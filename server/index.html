@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="necs">
+  <head>
+    <meta charset="utf-8">
+    <title>NECS</title>
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/app.css">
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-route/angular-route.js"></script>
+    <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+
+    <script src="/js/app.js"></script>
+    <script src="/js/controllers.js"></script>
+    <script src="/js/directives.js"></script>
+    <script src="/js/services.js"></script>
+  </head>
+  <body class="container">
+    <header-directive> </header-directive>
+    <div ng-view> </div>
+    <footer-directive></footer-directive>
+  </body>
+</html>
+
+
+<script>
+    var module = angular.module("sampleApp", ['ngRoute']);
+
+    module.config(['$routeProvider',
+        function($routeProvider) {
+            $routeProvider.
+                when('/route1', {
+                    templateUrl: 'angular-route-template-1.jsp',
+                    controller: 'RouteController'
+                }).
+                when('/route2', {
+                    templateUrl: 'angular-route-template-2.jsp',
+                    controller: 'RouteController'
+                }).
+                otherwise({
+                    redirectTo: '/'
+                });
+        }]);
+
+    module.controller("RouteController", function($scope) {
+
+    })
+</script>

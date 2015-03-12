@@ -1,0 +1,11 @@
+{
+  "browser": true,
+  "camelcase": true,
+  "eqeqeq": true,
+  "forin": true,
+  "indent": 2,
+  "node": true,
+  "predef": [ "describe", "expect", "it", "grunt", "angular", "beforeEach", "afterEach", "inject", "$", "d3", "spyOn", "moment", "Rickshaw", "fx"],
+  "undef": true,
+  "unused": true
+}

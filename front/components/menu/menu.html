@@ -1,0 +1,18 @@
+<div class="menu">
+  <div class="btn-group" dropdown is-open="status.isopen">
+
+    <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+      Catalog
+      <span class="caret"></span>
+    </button>
+
+    <ul class="dropdown-menu">
+      <li ng-repeat="category in categories" class="dropdown-submenu">
+        <a tabindex="-1" href="{{category.url}}">{{category.title}}</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <input  type="button" value="reserves" >
+</div>
