@@ -7,6 +7,7 @@ module.exports = mongoose.model('Product', {
     description: String,
     brand: String,
     price: Number,
-    stock:Number
+    stock:Number,
+    image:String
 
 });

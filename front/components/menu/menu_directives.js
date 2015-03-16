@@ -11,15 +11,15 @@ function(cakeBaseUrl){
   $scope.categories=[
     {
       title:"Dresses",
-      url:"/1",
+      url:"/products",
     },
     {
       title:"Skirts",
-      url:"/2",
+      url:"/products",
     },
     {
       title:"accesories",
-      url:"/3",
+      url:"/products",
     },
   ];
 

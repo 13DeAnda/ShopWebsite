@@ -30,8 +30,19 @@ db.once('open', function callback () {
 
 
 //get products
-app.get('/api/catalog',function(req,res){
-    Item.find({}, function(err, products){
-        res.send(items);
-    });
+app.get('/api/products',function(req,res){
+  Product.find({}, function(err, products){
+    res.send(products);
+  });
+});
+
+//get an specific product
+app.get('/api/products/:id',function(req,res){
+  var id= req.params.id;
+  Product.find({id:id}, function(err, product){
+    if(err){
+        return res.send(err);
+    }
+    res.send(product);
+  });
 });

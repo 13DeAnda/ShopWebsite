@@ -1,0 +1,16 @@
+<div class="products">
+  <ul>
+    <li class="text-center" ng-repeat="product in products">
+      <div class="title">
+        <a href="#/products/{{product.id}}">{{product.name}}</a>
+
+      </div>
+      <div >{{product.name}}
+        <img class="picture" ng-src="{{product.image}}">
+      </div>
+      <div class="price">
+        price:{{product.price}}$
+      </div>
+    </li>
+  </ul>
+</div>
