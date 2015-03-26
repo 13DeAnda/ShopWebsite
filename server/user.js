@@ -1,7 +1,10 @@
 var mongoose = require('mongoose');
 
-module.exports = mongoose.model('Product', {
+module.exports = mongoose.model('User', {
 
+  user: String,
+  password:String,
+  cart: [{
     id: Number,
     name: String,
     description: String,
@@ -9,5 +12,6 @@ module.exports = mongoose.model('Product', {
     price: Number,
     stock:Number,
     image:String
+  }],
 
 });

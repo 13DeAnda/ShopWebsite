@@ -1,4 +1,4 @@
-angular.module('vlac.AjaxModule', [])
+angular.module('AjaxModule', [])
 .factory('ajaxUtil', ['$http', function($http) {
   'use strict';
 
