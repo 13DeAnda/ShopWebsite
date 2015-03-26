@@ -3,7 +3,8 @@ angular.module('necs', ['ngRoute',
                         'necs.HeaderModule.directives',
                         'necs.FooterModule.directives',
                         'necs.ProductsModule.controller',
-                        'necs.ProductModule.controller'])
+                        'necs.ProductModule.controller',
+                        'necs.CartModule.controller'])
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider
     .when('/', {
@@ -17,6 +18,10 @@ angular.module('necs', ['ngRoute',
     .when('/products/:id', {
       templateUrl: 'html/product.html',
       controller: 'ProductController'
+    })
+    .when('/cart', {
+      templateUrl: 'html/cart.html',
+      controller: 'CartController'
     })
     .otherwise({
       redirectTo: '/'

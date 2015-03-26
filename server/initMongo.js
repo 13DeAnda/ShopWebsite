@@ -1,10 +1,11 @@
 var http = require('http');
 var mongoose  = require('mongoose');
 var express = require('express');
+var passport = require('passport');
 
 //importing the scheemas of the object
 var product = require('./product');
-
+var user = require('./user');
 var app = express();
 
 var db;
@@ -26,6 +27,7 @@ db.once('open', function callback () {
   console.log("connected successfully");
 
   generateProductData();
+  generateUserData();
 });
 
 var testSchema = mongoose.Schema({
@@ -65,4 +67,23 @@ function generateProductData(){
   dress2.save();
 }
 
+function generateUserData(){
+  console.log("--generating user Data--");
+  var User = mongoose.model('User',user);
+
+  var user1 = new User({
+    user: "aa",
+    password:"123",
+    cart: [{
+      id: 2,
+      name: "maria",
+      description: "",
+      brand: "baby the stars shine bright",
+      price:456,
+      stock:2,
+      image:"/assets/images/products/2.jpg",
+    }]
+  });
+  user1.save();
+}
 
