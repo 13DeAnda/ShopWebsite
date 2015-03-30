@@ -1,9 +1,8 @@
-var bCrypt = require('bcrypt-nodejs');
-var LocalStrategy = require('passport-local').Strategy;
 var User = require('./user.js');
+var LocalStrategy= require('passport-local').Strategy;
+var bCrypt= require('bCrypt-nodejs');
 
 module.exports = function(passport) {
-
     passport.serializeUser(function(user, done) {
         done(null, user._id);
     });
@@ -14,6 +13,7 @@ module.exports = function(passport) {
         });
     });
 
+    //tries to log in user
     passport.use('login', new LocalStrategy(
         {
             passReqToCallback: true
@@ -70,7 +70,6 @@ module.exports = function(passport) {
 
                         newUser.username = username;
                         newUser.password = createHash(password);
-                        newUser.companyId = -1;
 
                         newUser.save(function(err) {
                             if (err) {

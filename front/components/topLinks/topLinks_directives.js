@@ -17,6 +17,10 @@ function(cakeBaseUrl){
     {
       title:"Log in",
       url:"/login"
+    },
+    {
+      title:"Account",
+      url:"/account"
     }
     ];
 
