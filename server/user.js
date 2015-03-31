@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 module.exports = mongoose.model('User', {
 
-  user: String,
+  username: String,
   password:String,
   cart: [{
     id: Number,
@@ -10,7 +10,7 @@ module.exports = mongoose.model('User', {
     description: String,
     brand: String,
     price: Number,
-    stock:Number,
+    qty:Number,
     image:String
   }],
 

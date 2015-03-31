@@ -10,18 +10,18 @@
       <td> qty </td>
       <td> total </td>
     </tr>
-    <tr ng-repeat"product in ShopCartProducts">
+    <tr ng-repeat"product in products">
       <td><input type="checkbox"></td>
       <td><img class="picture" ng-src="{{product.image}}"></td>
       <td>{{product.name}}</td>
       <td>{{product.price}}$</td>
-      <td><input type="text" value"{{product.qty}}"> change qty</td>
+      <td><input type="text" ng-module="{{product.qty}}"> change qty</td>
     </tr>
   </table>
   current total:{{total}}<br>
 
-  <input type="submit" value"delete selected">
-  <input type="submit" value"update cart">
+  <input type="submit" value"delete" ng-click="delete()">
+  <input type="submit" value"update" ng-click="update()">>
 
 
 </div>

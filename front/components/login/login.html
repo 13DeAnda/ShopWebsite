@@ -1,4 +1,6 @@
 <div class="login">
-  <b>username:</b><input type="text" id="username"><br>
-  <b>password:</b><input type="password" id="password">
+  <label>Email</label><input type="text" ng-model="loginData.username"/><br>
+  <label>Password</label><input type="text" ng-model="loginData.password"/><br>
+  <label>new user?</label><input type="checkbox" ng-model="newUser.checked">
+  <button ng-click="login()">Login</button>
 </div>

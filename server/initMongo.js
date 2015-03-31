@@ -72,8 +72,8 @@ function generateUserData(){
   var User = mongoose.model('User',user);
 
   var user1 = new User({
-    user: "aa",
-    password:"123",
+    username: "aa",
+    password: "123",
     cart: [{
       id: 2,
       name: "maria",
