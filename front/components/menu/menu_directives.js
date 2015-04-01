@@ -8,7 +8,11 @@ function(cakeBaseUrl){
    scope.element = element;
  }
  function controller($scope){
-  $scope.categories=[
+
+  // constants //////////////////////////////
+
+    // scope properties ///////////////////////
+  $scope.categories = [
     {
       title:"Dresses",
       url:"/products",
@@ -23,19 +27,21 @@ function(cakeBaseUrl){
     },
   ];
 
-  $scope.status= {
-    isopen: false
-  };
+  // ajax ///////////////////////////////////
 
-  $scope.toggled = function(open) {
-    $log.log('Dropdown is now: ', open);
-  };
+  // handle broadcast messages //////////////
 
-  $scope.toggleDropdown = function($event) {
-    $event.preventDefault();
-    $event.stopPropagation();
-    $scope.status.isopen = !$scope.status.isopen;
-  };
+  // watch //////////////////////////////////
+
+  // event handlers /////////////////////////
+
+  // broadcast/emit /////////////////////////
+
+  // double bound ///////////////////////////
+
+  // scope/helper ///////////////////////////
+
+  // destroy ////////////////////////////////
 
    $scope.$on('$destroy', function(){
      $scope.element = null;

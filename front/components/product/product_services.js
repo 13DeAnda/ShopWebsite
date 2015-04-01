@@ -1,17 +1,15 @@
 angular.module('ProductModule', [])
 .factory('productService', ['$http', function($http) {
   'use strict';
-
   var productModule = {};
-
   var productList = [];
 
   productModule.addProduct = function(newObj) {
-      productList.push(newObj);
+    productList.push(newObj);
   };
 
   productModule.getProducts = function(){
-      return productList;
+    return productList;
   };
 
 //check if it's frinding a product or need to find by name !!!!!!!#######
@@ -21,7 +19,6 @@ angular.module('ProductModule', [])
       array.splice(i, 1);
     }
   };
-
   return productModule;
 }]);
 

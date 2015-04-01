@@ -6,7 +6,7 @@ angular.module('vc', ['ngRoute',
                         'vc.ProductModule.controller',
                         'vc.CartModule.controller',
                         'vc.LoginModule.controller',
-                        'vc.AccountModule.controller',
+                        'vc.AccountModule.controller'
                         ])
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider

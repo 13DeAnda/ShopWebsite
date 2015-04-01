@@ -12,6 +12,20 @@ function(){
    // constants //////////////////////////////
 
    // scope properties ///////////////////////
+    $scope.slides=[
+    {
+      image:"assets/images/home/rail/1.jpg",
+      url:"/"
+    },
+    {
+      image:"assets/images/home/rail/2.jpg",
+      url:"/"
+    },
+    {
+      image:"assets/images/home/rail/3.jpg",
+      url:"/"
+    }
+  ];
 
    // ajax ///////////////////////////////////
 
@@ -28,20 +42,7 @@ function(){
    // scope/helper ///////////////////////////
 
    // destroy ////////////////////////////////
-   $scope.slides=[
-      {
-        image:"assets/images/home/rail/1.jpg",
-        url:"/"
-      },
-      {
-        image:"assets/images/home/rail/2.jpg",
-        url:"/"
-      },
-      {
-        image:"assets/images/home/rail/3.jpg",
-        url:"/"
-      }
-    ];
+
 
 
 

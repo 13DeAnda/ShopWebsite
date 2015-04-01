@@ -14,12 +14,12 @@
         <i>id:{{product.id}}</i>
       </div>
 
-      <b>price:</b>{{product.price}}$<br>
+      <b>price:</b> {{ product.price | currency }}<br>
       <b>id:</b>{{product.id}}<br>
-      <b>qty:</b><input type="text" class="qty" ng-model="qty"><br>
+      <b>qty:</b><input type="number" class="qty" ng-model="qty"><br>
 
       <div class="text-center">
-        <input type="submit" value="add to cart" ng-click="addToCart(product,qty)">
+        <button ng-click="addToCart()">Add to Cart </button>
       </div>
 
     </div>
