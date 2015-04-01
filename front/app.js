@@ -1,12 +1,13 @@
-angular.module('necs', ['ngRoute',
-                        'necs.LandingModule.controller',
-                        'necs.HeaderModule.directives',
-                        'necs.FooterModule.directives',
-                        'necs.ProductsModule.controller',
-                        'necs.ProductModule.controller',
-                        'necs.CartModule.controller',
-                        'necs.LoginModule.controller',
-                        'necs.AccountModule.controller'])
+angular.module('vc', ['ngRoute',
+                        'vc.LandingModule.controller',
+                        'vc.HeaderModule.directives',
+                        'vc.FooterModule.directives',
+                        'vc.ProductsModule.controller',
+                        'vc.ProductModule.controller',
+                        'vc.CartModule.controller',
+                        'vc.LoginModule.controller',
+                        'vc.AccountModule.controller'
+                        ])
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider
     .when('/', {

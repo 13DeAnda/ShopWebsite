@@ -1,12 +1,22 @@
-angular.module('necs.ProductModule.controller', ['AjaxModule'])
-.controller('ProductController', ['$scope','$routeParams','ajaxUtil',
+angular.module('vc.ProductModule.controller', ['AjaxModule','ProductModule'])
+.controller('ProductController', ['$scope', '$routeParams', 'ajaxUtil', 'productService',
+function($scope, $routeParams, ajaxUtil, productService){
 
-function($scope,$routeParams,ajaxUtil){
+  $scope.qty = 1;
 
-  $scope.productId =$routeParams.id;
+ //gets product id and sends object
+  $scope.productId = $routeParams.id;
+
   $scope.onGetProduct = function(response){
-    $scope.product=response.data[0];
+    $scope.product = response.data[0];
   };
 
+  //calls to database
   ajaxUtil.get('/api/products/'+$scope.productId,$scope, "onGetProduct");
+
+  //sending product to service
+  $scope.addToCart = function(){
+    $scope.product.qty = $scope.qty;
+    productService.addProduct($scope.product);
+  };
 }]);

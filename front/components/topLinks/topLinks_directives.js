@@ -1,4 +1,4 @@
-angular.module('necs.TopLinksModule.directives', [])
+angular.module('vc.TopLinksModule.directives', [])
 .directive('topLinksDirective',
 [
 function(cakeBaseUrl){

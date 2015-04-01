@@ -1,7 +1,7 @@
-angular.module('necs.FeaturedBrandsModule.directives', [])
+angular.module('vc.FeaturedBrandsModule.directives', ['ui.bootstrap.tpls'])
 .directive('featuredBrandsDirective',
 [
-function(cakeBaseUrl){
+function(){
  'use strict';
 
  function linkingFunction(scope, element){
@@ -12,6 +12,20 @@ function(cakeBaseUrl){
    // constants //////////////////////////////
 
    // scope properties ///////////////////////
+    $scope.slides=[
+    {
+      image:"assets/images/home/rail/1.jpg",
+      url:"/"
+    },
+    {
+      image:"assets/images/home/rail/2.jpg",
+      url:"/"
+    },
+    {
+      image:"assets/images/home/rail/3.jpg",
+      url:"/"
+    }
+  ];
 
    // ajax ///////////////////////////////////
 
@@ -28,20 +42,7 @@ function(cakeBaseUrl){
    // scope/helper ///////////////////////////
 
    // destroy ////////////////////////////////
-   $scope.slides=[
-      {
-        image:"assets/images/home/rail/1.jpg",
-        url:"/"
-      },
-      {
-        image:"assets/images/home/rail/2.jpg",
-        url:"/"
-      },
-      {
-        image:"assets/images/home/rail/3.jpg",
-        url:"/"
-      }
-    ];
+
 
 
 

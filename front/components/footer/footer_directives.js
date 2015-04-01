@@ -1,4 +1,4 @@
-angular.module('necs.FooterModule.directives', [])
+angular.module('vc.FooterModule.directives', [])
 .directive("footerDirective",
 [
 function(){
@@ -12,6 +12,73 @@ function(){
     // constants //////////////////////////////
 
     // scope properties ///////////////////////
+  $scope.shippingLinks = [
+  {
+    title:"shipping in USA",
+    link:"/"
+  },
+  {
+    title:"Shipping outside USA",
+    link:"/"
+  },
+  {
+    title:"returns",
+    link:"/"
+  }
+  ];
+  $scope.aboutLinks=[
+  {
+    title:"company",
+    link:"/aboutUs"
+  },
+  {
+    title:"Contact",
+    link:"/contact"
+  },
+  {
+    title:"Jobs",
+    link:"/jobs"
+  },
+  {
+    title:"FAQ",
+    link:"/faq"
+  }
+  ];
+
+  $scope.socialLinks = [
+  {
+    title:"facebook",
+    link:"/"
+  },
+  {
+    title:"Twitter",
+    link:"/"
+  },
+  {
+    title:"Youtube",
+    link:"/"
+  }
+  ];
+
+  $scope.websiteLinks = [
+  {
+    title:"Site map",
+    link:"/sitemap"
+  },
+  {
+    title:"Accesability",
+    link:"/Accesability"
+  },
+  {
+    title:"NECS tour",
+    link:"/tour"
+  },
+  {
+    title:"Sign Up",
+    link:"/enroll"
+  }
+  ];
+
 
     // ajax ///////////////////////////////////
 
@@ -29,72 +96,6 @@ function(){
 
     // destroy ////////////////////////////////
 
-    $scope.shippingLinks=[
-      {
-        title:"shipping in USA",
-        link:"/"
-      },
-      {
-        title:"Shipping outside USA",
-        link:"/"
-      },
-      {
-        title:"returns",
-        link:"/"
-      }
-    ];
-    $scope.aboutLinks=[
-      {
-        title:"company",
-        link:"/aboutUs"
-      },
-      {
-        title:"Contact",
-        link:"/contact"
-      },
-      {
-        title:"Jobs",
-        link:"/jobs"
-      },
-      {
-        title:"FAQ",
-        link:"/faq"
-      }
-    ];
-
-    $scope.socialLinks=[
-      {
-        title:"facebook",
-        link:"/"
-      },
-      {
-        title:"Twitter",
-        link:"/"
-      },
-      {
-        title:"Youtube",
-        link:"/"
-      }
-    ];
-
-    $scope.websiteLinks=[
-      {
-        title:"Site map",
-        link:"/sitemap"
-      },
-      {
-        title:"Accesability",
-        link:"/Accesability"
-      },
-      {
-        title:"NECS tour",
-        link:"/tour"
-      },
-      {
-        title:"Sign Up",
-        link:"/enroll"
-      }
-    ];
 
 
 

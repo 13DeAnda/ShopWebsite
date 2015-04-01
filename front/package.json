@@ -1,12 +1,12 @@
 {
-  "name": "NECS",
+  "name": "VC",
   "version": "0.1.0",
-  "description": "NECS",
+  "description": "VC",
   "main": "Gruntfile.js",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://bitbucket.org/justindapkiewicz/necs"
+    "url": "https://github.com/13DeAnda/ShopWebsite"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
@@ -26,6 +26,6 @@
     "karma-jasmine": "^0.1.5",
     "karma-ng-html2js-preprocessor": "^0.1.0"
   },
-  "author": "Justin Dapkiewicz",
-  "license": "ISC"
+  "author": "Nora De Anda",
+  "license": ""
 }
