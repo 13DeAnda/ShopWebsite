@@ -1,4 +1,4 @@
-angular.module('necs.MenuModule.directives', ['ui.bootstrap'])
+angular.module('vc.MenuModule.directives', ['ui.bootstrap'])
 .directive('menuDirective',
 [
 function(cakeBaseUrl){

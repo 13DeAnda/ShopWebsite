@@ -1,4 +1,4 @@
-<div class"cart">
+<div class="cart">
     <div class="text-center">
         <h1> Current items in shopping cart </h1>
     </div>
@@ -10,7 +10,7 @@
       <td> qty </td>
       <td> total </td>
     </tr>
-    <tr ng-repeat"product in products">
+    <tr ng-repeat="product in products">
       <td><input type="checkbox"></td>
       <td><img class="picture" ng-src="{{product.image}}"></td>
       <td>{{product.name}}</td>
@@ -18,10 +18,11 @@
       <td><input type="text" ng-module="{{product.qty}}"> change qty</td>
     </tr>
   </table>
-  current total:{{total}}<br>
 
-  <input type="submit" value"delete" ng-click="delete()">
-  <input type="submit" value"update" ng-click="update()">>
+  <b>current total:{{total}}</b><br>
+
+  <input type="submit" value="delete" ng-click="delete()">
+  <input type="submit" value="update" ng-click="update()">>
 
 
 </div>

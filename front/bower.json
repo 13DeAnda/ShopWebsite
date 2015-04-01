@@ -1,11 +1,11 @@
 {
-  "name": "necs",
+  "name": "vc",
   "version": "0.1.0",
-  "homepage": "https://github.com/justindapkiewicz/necs",
+  "homepage": "https://github.com/13DeAnda/shopWebsite",
   "authors": [
-    "Justin Dapkiewicz <justindapkiewicz@gmail.com>"
+    "Nora De Anda<nora.e.de.anda@gmail.com>"
   ],
-  "description": "necs website",
+  "description": "vc website",
   "license": "Private",
   "private": true,
   "ignore": [

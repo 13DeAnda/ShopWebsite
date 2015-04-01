@@ -1,4 +1,4 @@
-angular.module('necs.LoginModule.controller', ['AjaxModule'])
+angular.module('vc.LoginModule.controller', ['AjaxModule'])
 .controller('LoginController', ['$scope','ajaxUtil',
 function($scope, ajaxUtil){
   $scope.loginData = {

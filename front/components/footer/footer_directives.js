@@ -1,4 +1,4 @@
-angular.module('necs.FooterModule.directives', [])
+angular.module('vc.FooterModule.directives', [])
 .directive("footerDirective",
 [
 function(){

@@ -1,4 +1,6 @@
-angular.module('necs.ProductsModule.controller', ['AjaxModule'])
+
+
+angular.module('vc.ProductsModule.controller', ['AjaxModule'])
 .controller('ProductsController', ['$scope','ajaxUtil',
 function($scope, ajaxUtil){
 

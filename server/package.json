@@ -1,14 +1,14 @@
 {
-  "name": "NECS-Backend-Tmp",
+  "name": "VC-Backend-Tmp",
   "version": "0.1.0",
-  "description": "NECS",
+  "description": "VC",
   "main": "Gruntfile.js",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://bitbucket.org/justindapkiewicz/necs"
+    "url": "https://github.com/13DeAnda/shopwebsite"
   },
-  "author": "Justin Dapkiewicz",
+  "author": "Nora De Anda",
   "license": "ISC",
   "devDependencies": {
     "express": "^4.11.2",

@@ -1,7 +1,7 @@
-angular.module('necs.FeaturedBrandsModule.directives', [])
+angular.module('vc.FeaturedBrandsModule.directives', ['ui.bootstrap.tpls'])
 .directive('featuredBrandsDirective',
 [
-function(cakeBaseUrl){
+function(){
  'use strict';
 
  function linkingFunction(scope, element){

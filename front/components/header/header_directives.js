@@ -1,4 +1,4 @@
-angular.module('necs.HeaderModule.directives', ['necs.TopLinksModule.directives','necs.MenuModule.directives','necs.SearchBarModule.directives']).
+angular.module('vc.HeaderModule.directives', ['vc.TopLinksModule.directives','vc.MenuModule.directives','vc.SearchBarModule.directives']).
 directive("headerDirective",
 [
 function(){

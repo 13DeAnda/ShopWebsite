@@ -1,18 +1,9 @@
-angular.module('necs.CartModule.controller', ['AjaxModule'])
-.controller('CartController', ['$scope','ajaxUtil',
-function($scope, ajaxUtil){
+angular.module('vc.CartModule.controller', ['AjaxModule','ProductModule'])
+.controller('CartController', ['$scope','ajaxUtil','productService',
+function($scope, ajaxUtil, productService){
 
-    $scope.products=[
-    {
-      id: 2,
-      name: "maria",
-      description: "",
-      brand: "baby the stars shine bright",
-      price:456,
-      qty:1,
-      image:"/assets/images/products/2.jpg",
-    }
-    ];
+    $scope.products=productService.getProducts();
+    console.log($scope.products);
 
   //sums the total
   $scope.getTotal=function(){
@@ -24,8 +15,4 @@ function($scope, ajaxUtil){
 
   $scope.total=$scope.getTotal();
 
-    $scope.onGetProducts = function(response){
-        $scope.products = response.data;
-    };
-    ajaxUtil.get('/api/cart',$scope, "onGetProducts");
 }]);

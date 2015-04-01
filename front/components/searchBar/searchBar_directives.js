@@ -1,4 +1,4 @@
-angular.module('necs.SearchBarModule.directives', [])
+angular.module('vc.SearchBarModule.directives', [])
 .directive('searchBarDirective',
 [
 function(cakeBaseUrl){
