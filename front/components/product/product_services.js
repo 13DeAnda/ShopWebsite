@@ -4,20 +4,35 @@ angular.module('ProductModule', [])
   var productModule = {};
   var productList = [];
 
+  var updateDB=function(){
+    console.log("some db handling here");
+  };
+
   productModule.addProduct = function(newObj) {
-    productList.push(newObj);
+    //if in the list
+    var found=false;
+    for(var i in productList){
+      if(productList[i].id == newObj.id){
+        productList[i].qty += newObj.qty;
+        found=true;
+      }
+    }
+    //if a new product
+    if(!found){
+      productList.push(newObj);
+    }
+
+    window.location.replace("#/cart");
   };
 
   productModule.getProducts = function(){
     return productList;
   };
 
-//check if it's frinding a product or need to find by name !!!!!!!#######
-  productModule.deleteProduct=function(product){
-    productModule.i=productList.indexOf(product);
-    if (i> -1) {
-      array.splice(i, 1);
-    }
+  productModule.update=function(newList){
+    productList=newList;
+    alert("changes updated on cart");
+    updateDB();
   };
   return productModule;
 }]);

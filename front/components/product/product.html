@@ -1,19 +1,17 @@
 <div class="product">
 
-  <div class="col-md-6">
+  <div class="col-lg-6">
     <div class="text-center">
-      <img class="picture" ng-src="{{product.image}}">
+      <img ng-src="{{product.image}}">
     </div>
   </div>
 
-  <div class="col-md-6">
+  <div class="col-lg-6">
     <div class="info">
-
       <div class="text-center">
         <h1>{{product.name}}</h1><br>
         <i>id:{{product.id}}</i>
       </div>
-
       <b>price:</b> {{ product.price | currency }}<br>
       <b>id:</b>{{product.id}}<br>
       <b>qty:</b><input type="number" class="qty" ng-model="qty"><br>
@@ -21,7 +19,6 @@
       <div class="text-center">
         <button ng-click="addToCart()">Add to Cart </button>
       </div>
-
     </div>
   </div>
 </div>

@@ -11,5 +11,25 @@ function($scope, ajaxUtil, productService){
     return total;
   };
 
-  $scope.total = $scope.getTotal();
+  $scope.update=function(){
+    var newProducts = [];
+    for(var i in $scope.products){
+      //checks to delete
+      if($scope.products[i].checked){
+        break;
+      }
+      //checks to update qty
+      var idName="qty"+$scope.products[i].id;
+      var newQty = document.getElementById(idName).value;
+
+      if($scope.products[i].qty != newQty){
+        $scope.products[i].qty = newQty;
+      }
+
+      newProducts.push($scope.products[i]);
+    }
+
+    $scope.products = newProducts;
+    productService.update();
+  };
 }]);

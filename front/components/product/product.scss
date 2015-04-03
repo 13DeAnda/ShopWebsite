@@ -1,8 +1,10 @@
 .product{
-
   background-color:white;
+  height: 400px;
+  margin-bottom: 20px;
+  margin-top: 20px;
 
-  img.picture{
+  img{
     height: 400px;
     width: 300px;
   }
@@ -12,7 +14,5 @@
   .qty{
     width: 30px;
   }
-  .info{
-    background-color: white;
-  }
+
 }

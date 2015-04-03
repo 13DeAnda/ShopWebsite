@@ -2,6 +2,7 @@ var http = require('http');
 var mongoose  = require('mongoose');
 var express = require('express');
 var passport = require('passport');
+var bCrypt= require('bCrypt-nodejs');
 
 //importing the scheemas of the object
 var product = require('./product');
@@ -51,6 +52,7 @@ function generateProductData(){
     brand: "baby the stars shine bright",
     price:340,
     stock:2,
+    qty:1,
     image:"/assets/images/products/1.jpg"
   });
   dress1.save();
@@ -62,6 +64,7 @@ function generateProductData(){
     brand: "baby the stars shine bright",
     price:456,
     stock:2,
+    qty:1,
     image:"/assets/images/products/2.jpg"
   });
   dress2.save();
@@ -73,7 +76,7 @@ function generateUserData(){
 
   var user1 = new User({
     username: "aa",
-    password: "123",
+    password: bCrypt.hashSync("123", bCrypt.genSaltSync(10), null),
     cart: [{
       id: 2,
       name: "maria",
