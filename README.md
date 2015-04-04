@@ -1,25 +1,30 @@
 # ShopWebsite
 
-how to setup:
+-prerequicites: 
 
-Basic manual downloads
+    -ruby   :https://www.ruby-lang.org/en/documentation/installation/
+    -sass   :http://sass-lang.com/install
+    -node   :https://nodejs.org/download/
+    -bower  :http://bower.io/
+    -mongod :http://docs.mongodb.org/manual/installation/
 
-install npm
-download / install node
-download / install mongod
+How to setup the enviroment:
+  on front directory
+  -npm bower install
+  on server directory
+  -npm install
+  
 
-to setup the enviroment first run:/
+how to run the page:
+    run the server:
+    -run mongod
+    -console 1 : go into the server folder and run 
+        | node app.js
+        
+    page should now be visible on your page: 127.0.0.1:8000
 
-to run the page:
-move to the server folder and run:
-npm install     
-node app.js
-
-open another window and move to the front server and run
-npm install     
-node app.js
-
-the website should be available in your 127.0.0.1:8000 address
-
-
-
+to modify code
+    go into the front/components directory:
+    to save modifications 
+        -console 2 : go into the front folder and run 
+        | grunt
