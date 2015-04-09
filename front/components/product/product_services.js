@@ -4,24 +4,19 @@ angular.module('ProductModule', [])
   var productModule = {};
   var productList = [];
 
-  var updateDB=function(){
-    console.log("some db handling here");
-  };
-
   productModule.addProduct = function(newObj) {
     //if in the list
-    var found=false;
+    var found = false;
     for(var i in productList){
       if(productList[i].id == newObj.id){
         productList[i].qty += newObj.qty;
-        found=true;
+        found = true;
       }
     }
     //if a new product
     if(!found){
       productList.push(newObj);
     }
-
     window.location.replace("#/cart");
   };
 
@@ -30,9 +25,8 @@ angular.module('ProductModule', [])
   };
 
   productModule.update=function(newList){
-    productList=newList;
+    productList = newList;
     alert("changes updated on cart");
-    updateDB();
   };
   return productModule;
 }]);
