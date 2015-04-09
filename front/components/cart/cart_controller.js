@@ -11,5 +11,38 @@ function($scope, ajaxUtil, productService){
     return total;
   };
 
-  $scope.total = $scope.getTotal();
+  //would check or uncheck all
+  $scope.checkAll=function(){
+    if($scope.all)
+      for(var i in $scope.products){
+        $scope.products[i].checked=true;
+      }
+    else
+      for(var j in $scope.products){
+        $scope.products[j].checked=false;
+      }
+  };
+
+  $scope.update=function(){
+    var newProducts = [];
+    for(var i in $scope.products){
+      //checks to delete
+      if(!$scope.products[i].checked){
+        //checks to update qty
+        var idName ="qty"+$scope.products[i].id;
+        var newQty = document.getElementById(idName);
+
+        if(newQty !== null){
+          if($scope.products[i].qty != newQty.value){
+            $scope.products[i].qty = newQty.value;
+          }
+        }
+        newProducts.push($scope.products[i]);
+      }
+    }
+    $scope.products = newProducts;
+    productService.update($scope.products);
+    newProducts=[];
+  };
 }]);
+

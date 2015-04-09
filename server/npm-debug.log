@@ -2,14 +2,14 @@
 1 verbose cli [ 'C:\\Program Files\\nodejs\\\\node.exe',
 1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
 1 verbose cli   'install',
-1 verbose cli   'bCrypt-nodejs' ]
+1 verbose cli   'bcrypt-node.js' ]
 2 info using npm@1.4.28
 3 info using node@v0.10.36
 4 verbose node symlink C:\Program Files\nodejs\\node.exe
 5 warn package.json path@0.11.14 path is also the name of a node core module.
 6 verbose readDependencies using package.json deps
-7 verbose cache add [ 'bCrypt-nodejs', null ]
-8 verbose cache add name=undefined spec="bCrypt-nodejs" args=["bCrypt-nodejs",null]
+7 verbose cache add [ 'bcrypt-node.js', null ]
+8 verbose cache add name=undefined spec="bcrypt-node.js" args=["bcrypt-node.js",null]
 9 verbose parsed url { protocol: null,
 9 verbose parsed url   slashes: null,
 9 verbose parsed url   auth: null,
@@ -19,29 +19,29 @@
 9 verbose parsed url   hash: null,
 9 verbose parsed url   search: null,
 9 verbose parsed url   query: null,
-9 verbose parsed url   pathname: 'bCrypt-nodejs',
-9 verbose parsed url   path: 'bCrypt-nodejs',
-9 verbose parsed url   href: 'bCrypt-nodejs' }
-10 silly lockFile 41bcf11d-bCrypt-nodejs bCrypt-nodejs
-11 verbose lock bCrypt-nodejs C:\Users\uxorater\AppData\Roaming\npm-cache\41bcf11d-bCrypt-nodejs.lock
-12 silly lockFile 41bcf11d-bCrypt-nodejs bCrypt-nodejs
-13 silly lockFile 41bcf11d-bCrypt-nodejs bCrypt-nodejs
-14 verbose addNamed [ 'bCrypt-nodejs', '' ]
+9 verbose parsed url   pathname: 'bcrypt-node.js',
+9 verbose parsed url   path: 'bcrypt-node.js',
+9 verbose parsed url   href: 'bcrypt-node.js' }
+10 silly lockFile 5ad9d682-bcrypt-node-js bcrypt-node.js
+11 verbose lock bcrypt-node.js C:\Users\uxorater\AppData\Roaming\npm-cache\5ad9d682-bcrypt-node-js.lock
+12 silly lockFile 5ad9d682-bcrypt-node-js bcrypt-node.js
+13 silly lockFile 5ad9d682-bcrypt-node-js bcrypt-node.js
+14 verbose addNamed [ 'bcrypt-node.js', '' ]
 15 verbose addNamed [ null, '*' ]
-16 silly lockFile d9114779-bCrypt-nodejs bCrypt-nodejs@
-17 verbose lock bCrypt-nodejs@ C:\Users\uxorater\AppData\Roaming\npm-cache\d9114779-bCrypt-nodejs.lock
-18 silly addNameRange { name: 'bCrypt-nodejs', range: '*', hasData: false }
-19 verbose request where is /bCrypt-nodejs
+16 silly lockFile 83427a79-bcrypt-node-js bcrypt-node.js@
+17 verbose lock bcrypt-node.js@ C:\Users\uxorater\AppData\Roaming\npm-cache\83427a79-bcrypt-node-js.lock
+18 silly addNameRange { name: 'bcrypt-node.js', range: '*', hasData: false }
+19 verbose request where is /bcrypt-node.js
 20 verbose request registry https://registry.npmjs.org/
-21 verbose request id 3fb3c9b96208f0c5
-22 verbose url raw /bCrypt-nodejs
-23 verbose url resolving [ 'https://registry.npmjs.org/', './bCrypt-nodejs' ]
-24 verbose url resolved https://registry.npmjs.org/bCrypt-nodejs
-25 verbose request where is https://registry.npmjs.org/bCrypt-nodejs
-26 info trying registry request attempt 1 at 15:37:27
-27 http GET https://registry.npmjs.org/bCrypt-nodejs
-28 http 404 https://registry.npmjs.org/bCrypt-nodejs
-29 verbose headers { date: 'Sun, 29 Mar 2015 22:37:22 GMT',
+21 verbose request id 2c005f97f62b72db
+22 verbose url raw /bcrypt-node.js
+23 verbose url resolving [ 'https://registry.npmjs.org/', './bcrypt-node.js' ]
+24 verbose url resolved https://registry.npmjs.org/bcrypt-node.js
+25 verbose request where is https://registry.npmjs.org/bcrypt-node.js
+26 info trying registry request attempt 1 at 21:19:36
+27 http GET https://registry.npmjs.org/bcrypt-node.js
+28 http 404 https://registry.npmjs.org/bcrypt-node.js
+29 verbose headers { date: 'Sat, 04 Apr 2015 04:19:35 GMT',
 29 verbose headers   server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
 29 verbose headers   'content-type': 'application/json',
 29 verbose headers   'cache-control': 'max-age=0',
@@ -49,14 +49,14 @@
 29 verbose headers   'accept-ranges': 'bytes',
 29 verbose headers   via: '1.1 varnish',
 29 verbose headers   age: '0',
-29 verbose headers   'x-served-by': 'cache-sjc3129-SJC',
+29 verbose headers   'x-served-by': 'cache-sjc3130-SJC',
 29 verbose headers   'x-cache': 'MISS',
 29 verbose headers   'x-cache-hits': '0',
-29 verbose headers   'x-timer': 'S1427668642.872215,VS0,VE38',
+29 verbose headers   'x-timer': 'S1428121175.681203,VS0,VE39',
 29 verbose headers   'keep-alive': 'timeout=10, max=50',
 29 verbose headers   connection: 'Keep-Alive' }
 30 silly registry.get cb [ 404,
-30 silly registry.get   { date: 'Sun, 29 Mar 2015 22:37:22 GMT',
+30 silly registry.get   { date: 'Sat, 04 Apr 2015 04:19:35 GMT',
 30 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
 30 silly registry.get     'content-type': 'application/json',
 30 silly registry.get     'cache-control': 'max-age=0',
@@ -64,24 +64,26 @@
 30 silly registry.get     'accept-ranges': 'bytes',
 30 silly registry.get     via: '1.1 varnish',
 30 silly registry.get     age: '0',
-30 silly registry.get     'x-served-by': 'cache-sjc3129-SJC',
+30 silly registry.get     'x-served-by': 'cache-sjc3130-SJC',
 30 silly registry.get     'x-cache': 'MISS',
 30 silly registry.get     'x-cache-hits': '0',
-30 silly registry.get     'x-timer': 'S1427668642.872215,VS0,VE38',
+30 silly registry.get     'x-timer': 'S1428121175.681203,VS0,VE39',
 30 silly registry.get     'keep-alive': 'timeout=10, max=50',
 30 silly registry.get     connection: 'Keep-Alive' } ]
-31 silly lockFile d9114779-bCrypt-nodejs bCrypt-nodejs@
-32 silly lockFile d9114779-bCrypt-nodejs bCrypt-nodejs@
-33 error 404 404 Not Found: bCrypt-nodejs
+31 silly lockFile 83427a79-bcrypt-node-js bcrypt-node.js@
+32 silly lockFile 83427a79-bcrypt-node-js bcrypt-node.js@
+33 error 404 404 Not Found: bcrypt-node.js
 33 error 404
-33 error 404 'bCrypt-nodejs' is not in the npm registry.
+33 error 404 'bcrypt-node.js' is not in the npm registry.
 33 error 404 You should bug the author to publish it
-33 error 404 It was specified as a dependency of 'NECS-Backend-Tmp'
+33 error 404 It was specified as a dependency of 'VC-Backend-Tmp'
+33 error 404
+33 error 404 Maybe try 'npm search bcrypt node'
 33 error 404
 33 error 404 Note that you can also install from a
 33 error 404 tarball, folder, or http url, or git url.
 34 error System Windows_NT 6.2.9200
-35 error command "C:\\Program Files\\nodejs\\\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "bCrypt-nodejs"
+35 error command "C:\\Program Files\\nodejs\\\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "bcrypt-node.js"
 36 error cwd C:\Users\uxorater\Documents\dev\ShopWebsite\server
 37 error node -v v0.10.36
 38 error npm -v 1.4.28

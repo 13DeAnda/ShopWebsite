@@ -1,4 +1,4 @@
-angular.module('vc.ProductModule.controller', ['AjaxModule','ProductModule'])
+angular.module('vc.ProductModule.controller', ['AjaxModule'])
 .controller('ProductController', ['$scope', '$routeParams', 'ajaxUtil', 'productService',
 function($scope, $routeParams, ajaxUtil, productService){
 
