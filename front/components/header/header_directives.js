@@ -1,4 +1,4 @@
-angular.module('vc.HeaderModule.directives', ['vc.TopLinksModule.directives', 'vc.MenuModule.directives', 'vc.SearchBarModule.directives']).
+angular.module('vc.HeaderModule.directives', []).
 directive("headerDirective",
 [
 function(){

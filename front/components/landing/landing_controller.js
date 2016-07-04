@@ -1,4 +1,4 @@
-angular.module('vc.LandingModule.controller', ['vc.FeaturedBrandsModule.directives'])
+angular.module('vc.LandingModule.controller', [])
 .controller('LandingController', ['$scope',
 function($scope){
 

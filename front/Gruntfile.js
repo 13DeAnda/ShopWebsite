@@ -18,8 +18,7 @@ module.exports = function(grunt) {
     clean: [
       'static/html/',
       'static/js/',
-      'static/css/',
-      'static/bower_components/'
+      'static/css/'
     ],
     concat: {
       controllers: {
@@ -33,6 +32,10 @@ module.exports = function(grunt) {
       services: {
         src: ['components/**/*_services.js'],
         dest: 'static/js/services.js'
+      },
+      library: {
+        src: ['static/node_modules/*.js'],
+        dest: 'static/js/external.js'
       }
     },
     copy: {
@@ -53,8 +56,10 @@ module.exports = function(grunt) {
           },
           {
             expand: true,
-            src: ['bower_components/**'],
-            dest: 'static/',
+            flatten: true,
+            src: ['node_modules/angular-bootstrap/ui-bootstrap-tpls.js', 
+                  'node_modules/angular-route/angular-route.js'],
+            dest: 'static/node_modules/',
             filter: 'isFile'
           }
         ]

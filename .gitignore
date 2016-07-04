@@ -3,11 +3,11 @@
 
 front/node_modules
 .sass-cache/
-front/static/bower_components
+front/static/node_components
 front/static/css
 front/static/html
 front/static/js
-front/bower_components
+front/node_components
 
 # Server
 server/node_modules
