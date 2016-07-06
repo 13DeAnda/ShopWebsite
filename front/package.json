@@ -1,7 +1,7 @@
 {
-  "name": "VC",
+  "name": "Black",
   "version": "0.1.0",
-  "description": "VC",
+  "description": "Black website",
   "main": "Gruntfile.js",
   "private": true,
   "repository": {

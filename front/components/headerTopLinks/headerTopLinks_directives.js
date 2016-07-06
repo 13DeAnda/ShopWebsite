@@ -1,11 +1,11 @@
-angular.module('black.HeaderModule.directives', []).
-directive("headerDirective",
+angular.module('black.HeaderTopLinksModule.directives', []).
+directive("headerTopLinksDirective",
 [
 function(){
   'use strict';
 
   function linkingFunction(scope, element, attrs){
-  scope.element = element;
+    scope.element = element;
   }
 
   function controller($scope){
@@ -21,7 +21,7 @@ function(){
     controller: controller,
     scope: {
     },
-    templateUrl: "html/header.html",
+    templateUrl: "html/headerTopLinks.html",
     link: linkingFunction
   };
 }]);
