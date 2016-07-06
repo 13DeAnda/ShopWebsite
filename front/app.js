@@ -1,7 +1,8 @@
-angular.module('vc', ['ngRoute',
-                        'vc.LandingModule.controller',
-                        'vc.HeaderModule.directives',
-                        'vc.FooterModule.directives',
+angular.module('black', ['ngRoute',
+                        'black.LandingModule.controller',
+                        'black.HeaderModule.directives',
+                        'black.FooterModule.directives',
+                        'black.HeaderTopLinksModule.directives'
                         ])
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider

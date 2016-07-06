@@ -1,4 +1,4 @@
-angular.module('vc.FooterModule.directives', [])
+angular.module('black.FooterModule.directives', [])
 .directive("footerDirective",
 [
 function(){
