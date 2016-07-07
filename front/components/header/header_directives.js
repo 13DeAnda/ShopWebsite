@@ -1,4 +1,4 @@
-angular.module('black.HeaderModule.directives', []).
+angular.module('black.HeaderModule.directives', ['black.HeaderTopLinksModule.directives', 'black.HeaderMenuModule.directives']).
 directive("headerDirective",
 [
 function(){
