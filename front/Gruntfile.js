@@ -18,7 +18,9 @@ module.exports = function(grunt) {
     clean: [
       'static/html/',
       'static/js/',
-      'static/css/'
+      'static/css/',
+      'static/node_modules'
+
     ],
     concat: {
       controllers: {
@@ -34,7 +36,8 @@ module.exports = function(grunt) {
         dest: 'static/js/services.js'
       },
       library: {
-        src: ['static/node_modules/*.js'],
+        src: ['node_modules/angular-bootstrap/ui-bootstrap-tpls.js', 
+                  'node_modules/angular-route/angular-route.js'],
         dest: 'static/js/external.js'
       }
     },
@@ -57,8 +60,9 @@ module.exports = function(grunt) {
           {
             expand: true,
             flatten: true,
-            src: ['node_modules/angular-bootstrap/ui-bootstrap-tpls.js', 
-                  'node_modules/angular-route/angular-route.js'],
+            src: ['node_modules/angular/angular.js',
+                  'node_modules/bootstrap/dist/css/bootstrap.css'
+                  ],
             dest: 'static/node_modules/',
             filter: 'isFile'
           }
