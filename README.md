@@ -5,12 +5,11 @@
     -ruby   :https://www.ruby-lang.org/en/documentation/installation/
     -sass   :http://sass-lang.com/install
     -node   :https://nodejs.org/download/
-    -bower  :http://bower.io/
-    -mongod :http://docs.mongodb.org/manual/installation/
+    -postgress
 
 How to setup the enviroment:
       on front directory
-      -npm bower install
+      -npm install
       on server directory
       -npm install
   
