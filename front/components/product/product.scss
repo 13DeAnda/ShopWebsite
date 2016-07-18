@@ -1,6 +1,35 @@
 .product{
-	
-	height: "500px";
 
-	
+	.infoContainer{
+		margin-left: "100px";
+
+		.carButton{
+			margin-top:50px;
+			margin-left:100px;
+		}
+		.qtyBox{
+			margin-left:20px;
+			margin-top:50px;
+			width: 40px;
+		}
+	}
+
+    .imagesContainer{
+    	margin-left: 30px;
+	    .mainImage{
+		    height: 200px;
+		    width: 200px;
+	    }
+		.railImages{
+	    	display: inline;
+	    	margin-left: 5px;
+	    	margin-top: 10px;
+
+	    	.railImage{
+	    		height: 50px;
+	    		width: 50px;
+	    	}
+	    }    
+    }
+	    
 }
