@@ -9,7 +9,6 @@ function(){
   }
 
   function controller($scope){
-
     $scope.topLinks = [
         {
           title: "user",
@@ -36,9 +35,6 @@ function(){
           auth: "false"
         },
     ];
-
-
-
 
     $scope.$on("$destroy", function(){
       $scope.element = null;

@@ -1,7 +1,6 @@
 angular.module('black.LandingModule.controller', [])
 .controller('LandingController', ['$scope',
 function($scope){
-
 	//TODO: would have to be retrived on api's as either recomendations or most popular.
 	$scope.featuredProducts = [
 		{
@@ -29,5 +28,4 @@ function($scope){
 			src: "http://www.the-gothic-shop.co.uk/thumbs/180x270/images/user/58-050815125722.jpg"
 		},
 	];
-
 }]);

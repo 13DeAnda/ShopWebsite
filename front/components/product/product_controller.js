@@ -2,7 +2,6 @@ angular.module('black.ProductModule.controller', [])
 .controller('ProductController', ['$scope',
 function($scope){
 	//By standar a product must have at least one.
-	
 	$scope.product = {
 		id: 1,
 		title: "some title",
@@ -15,12 +14,9 @@ function($scope){
 		],
 		description: "this is an example of a description that can be as long as 200 character"
 	};
-
 	$scope.currentImage = $scope.product.images[0]; 
 
 	$scope.imageChange = function(url){
 		$scope.currentImage = url;
 	};
-
-	console.log("the current image", $scope.currentImage);
 }]);
