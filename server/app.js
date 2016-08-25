@@ -41,5 +41,30 @@ app.get('/users', function(req, res) {
   });
 });
 
+app.get('/api/products', function(req, res) {
+  client.query('select * from products', function(err, result) {
+    if (err) {
+      console.log(err);
+    }
+    else {
+      res.send(result.rows)
+    }
+  });
+});
+
+//get a single product
+app.get('/api/product/:id', function(req, res) {
+  var id = req.params.id;
+  var query = 'select * from products where did =' + id;
+  
+  client.query(query, function(err, result) {
+    if (err) {
+      console.log(err);
+    }
+    else {
+      res.send(result.rows)
+    }
+  });
+});
 
 var server = app.listen(8000);
