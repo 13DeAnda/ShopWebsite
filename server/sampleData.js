@@ -2,7 +2,7 @@ var express = require('express');
 var path = require('path');
 var expressSession = require('express-session');
 var bodyParser = require('body-parser');
-
+var _ = require('lodash');
 var pg = require('pg');
 var db_config = require('./db');
 
@@ -23,42 +23,83 @@ app.use(bodyParser.urlencoded({ extended: false }));
 var client = new pg.Client(db_config);
 
 client.connect(function (err) {
-  if (err) throw err;
+    if (err) throw err;
 
-  console.log('connected');
+    console.log('connected');
 });
+
 var server = app.listen(8000);
 
 function deleteTables(){
-  client.query('DROP TABLE IF EXISTS Products', function(err, result) {
-    if (err) {
-      console.log(err);
-    }
-    else {
-      console.log("product table deleted");
-    }
-  });
+    client.query('DROP TABLE IF EXISTS Products', function(err, result) {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            console.log("product table deleted");
+        }
+    });
 };
 
 function createTables(){
-    client.query('CREATE TABLE Products(id decimal,title varchar(150), price decimal, description text, images text[])', function(err, result) {
-      if (err) {
-        console.log(err);
-      }
-      else {
-        console.log("Products table created");
-      }
+    client.query('CREATE TABLE Products(did integer, title varchar(150), price decimal, description text, images text[])', function(err, result) {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            console.log("Products table created");
+        }
      });
 };
 
+var products = [
+  {
+    title: "moitie cathedralskirt",
+    price: "564",
+    description: "more descriptions to come...",
+    images: ["http://ic.pics.livejournal.com/diaforos_ad/45177959/3010/3010_600.jpg"]
+  },
+  {
+    title: "moitie navy baby op",
+    price: "234",
+    description: "more descriptions to come...",
+    images: ["http://data.whicdn.com/images/21702355/large.jpg"]
+  },
+  {
+    title: "holly cross",
+    price: "456",
+    description: "more descriptions to come...",
+    images: ["https://c1.staticflickr.com/9/8214/8253627577_c2f5f69dfc.jpg"]
+  },
+  {
+    title: "black peace now",
+    price: "456",
+    description: "more descriptions to come...",
+    images: ["https://c1.staticflickr.com/9/8214/8253627577_c2f5f69dfc.jpg"]
+  }
+];
+
 function addProducts(){
     //do a for each and make an array of queries.
-    console.log("gona try to add products");
-    client.query('INSERT INTO Products VALUES(345.3, \'moitie shirt\', 344, \'it is made of silk\', Array[\' http://www.lacemarket.us/wp-content/themes/auctionpress/thumbs/495230-1133-2015-10-22488875.jpg\'])', function(err, result) {
-      if (err) {
-        console.log(err);
-      }
-     });
+    console.log("adding products");
+    _.forEach(products, function(product, index){
+        var id = index+1;
+        var query = 'INSERT INTO Products VALUES('+id+ ',\'' +product.title + '\','+ product.price+ ','+ '\'' +product.description + '\','+'Array[';
+
+        _.forEach(product.images, function(image, index){
+            query += '\''+ image + '\'';
+            if(product.images.length < index+1){
+                query+= '\'';
+            }
+        });
+        query += '])';
+        
+      client.query(query, function(err, result) {
+            if (err) {
+              console.log(err);
+            }
+        });
+    });
 };
 
 
