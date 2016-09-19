@@ -14,27 +14,39 @@ function(){
           title: "user",
           image: "/assets/images/icons/userIcon.png",
           link: "/account",
-          auth: "false"
+          auth: "false",
+          focus: "off"
         },
         {
           title: "wishlist",
           image: "/assets/images/icons/wishListIcon.png",
           link: "/wishlist",
-          auth: "true"
+          auth: "true",
+          focus: "off"
         },
         {
           title: "shop",
           image: "/assets/images/icons/shopIcon.png",
           link: "/shop",
-          auth: "false"
+          auth: "false",
+          focus: "off"
         },
         {
           title: "explore",
           image: "/assets/images/icons/exploreIcon.png",
           link: "/explore",
-          auth: "false"
+          auth: "false",
+          focus: "off"
         },
     ];
+
+    $scope.offObject = function(item){
+      item.focus = "off";
+    };
+
+    $scope.onObject = function(item){
+      item.focus = "on";
+    };
 
     $scope.$on("$destroy", function(){
       $scope.element = null;

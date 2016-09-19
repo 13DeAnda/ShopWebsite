@@ -1,12 +1,23 @@
 .headerTopLinks{
 	text-align: right;
 	margin-right: 200px;
-	.icon{
+	
+	.off{
 		display: inline;
 		margin-left: 10px;
 		.iconImg{
 			height: 20px;
 			width: 20px;
 		}	
+	}
+	.on{
+		display: inline;
+		margin-left: 10px;
+		opacity: 0.2;
+		cursor: pointer;
+		.iconImg{
+			height: 20px;
+			width: 20px;
+		}
 	}
 }

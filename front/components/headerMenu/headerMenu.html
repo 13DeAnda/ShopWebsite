@@ -1,5 +1,5 @@
 <div class= "headerMenu">
-	<div class= "menuItem" ng-repeat= "item in menuItems">
+	<div ng-repeat= "item in menuItems" ng-mouseover="onMenu(item)" ng-mouseleave ="offMenu(item)" ng-class= "item.focus" >
 		{{item.title}}
 	</div>
 </div>

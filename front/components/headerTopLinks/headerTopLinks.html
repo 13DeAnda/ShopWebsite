@@ -1,5 +1,5 @@
 <div class= "headerTopLinks" >
-	<div class= "icon" ng-repeat= "link in topLinks" > 
+	<div ng-repeat= "link in topLinks" ng-mouseover="onObject(link)" ng-mouseleave="offObject(link)" ng-class="link.focus"> 
 		<img class= "iconImg" src= "{{link.image}}" />
 	</div>
 </div>
