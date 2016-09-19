@@ -11,7 +11,7 @@ function(){
   function controller($scope){
     $scope.menuItems = [
       {
-        title: "Shop",
+        title: "SHOP",
         items: [
             {
               title: "Clothing",
@@ -25,11 +25,11 @@ function(){
               title: "Home",
               url: "shop/home"
             }
-
         ],
+        focus: "off",
       },
       {
-        title: "Explore",
+        title: "EXPLORE",
         items: [
           {
             title: "Fashion",
@@ -52,9 +52,17 @@ function(){
             url:"explore/enthertaiment"
           },
         ],
+        focus: "off"
       }
     ];
 
+    $scope.offMenu = function(item){
+      item.focus = "off";
+    };
+
+    $scope.onMenu = function(item){
+      item.focus = "on";
+    };
 
     $scope.$on("$destroy", function(){
       $scope.element = null;
