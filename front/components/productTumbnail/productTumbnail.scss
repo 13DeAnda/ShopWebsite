@@ -1,0 +1,26 @@
+.productTumbnail{
+	
+	text-align: center;
+	.productImage{
+		width: 150px;
+		height: 150px;
+		margin: 10px;
+		margin-top: 40px;
+	}
+	.overlay{
+		cursor: pointer;
+		position: absolute;
+		z-index: 1;
+		width: 182px;
+		height: 200px;
+		margin: 10px;
+		background-color: black;
+		opacity: 0.8;
+
+		.infoBox{
+			margin-top: 45px;
+			color: white;
+			font-size: 20px;
+		}
+	}
+}

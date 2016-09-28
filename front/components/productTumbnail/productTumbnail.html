@@ -1,0 +1,14 @@
+<div class= "productTumbnail" ng-mouseover= "onProduct()" ng-mouseleave= "offProduct()">
+	<div class="overlay" ng-show= "isSelected">
+	 	<div class= "infoBox">
+	 		${{product.price}} <br>
+	 		{{product.title}} <br>
+	 		<u> view </u>
+	 	</div>
+	</div>
+
+	<img src="{{product.images[0]}}" class = "productImage"><br>
+	<div class="title" ng-show="!isSelected">
+		{{product.title}}
+	</div>
+</div>
