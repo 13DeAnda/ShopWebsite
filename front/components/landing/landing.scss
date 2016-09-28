@@ -1,16 +1,12 @@
 .landing{
-	height: 500px;
+	min-height: 500px;
 	margin-left: 10%;
-	width: 80%;
+	width: 90%;
+
 	.product{
-		height: 200;
-		width: 300px;
-		margin-bottom: 30px;
-		text-align: center;
-		display: inline-block;
-		.productImage{
-			width: 150px;
-			height: 150px;
-		}
+		width: 200px;
+		height: 200px;
+		margin: 20px;
+		display: inline-table;
 	}
 }

@@ -1,6 +1,6 @@
 <div class="landing">
 	<div class= "product" ng-repeat = "product in featuredProducts">
-		<img src="{{product.images[0]}}" class = "productImage"><br>
-			{{product.title}}
+		<product-tumbnail-directive product="product">
+		</product-tumbnail-directive>
 	</div>
 </div>
