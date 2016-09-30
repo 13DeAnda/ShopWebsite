@@ -10,48 +10,7 @@ var app = express();
 app.use(expressSession({secret: 'key'}));
 app.use(express.static(path.resolve(__dirname + '/../front/static')));
 
-app.get('/', function(req, res) {
-	res.sendfile('index.html');
-});
-
-
-// parse application/json
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-
-// Connect to database
-var client = new pg.Client(db_config);
-
-client.connect(function (err) {
-    if (err) throw err;
-
-    console.log('connected');
-});
-
-var server = app.listen(8000);
-
-function deleteTables(){
-    client.query('DROP TABLE IF EXISTS Products', function(err, result) {
-        if (err) {
-            console.log(err);
-        }
-        else {
-            console.log("product table deleted");
-        }
-    });
-};
-
-function createTables(){
-    client.query('CREATE TABLE Products(did integer, title varchar(150), price decimal, description text, images text[])', function(err, result) {
-        if (err) {
-            console.log(err);
-        }
-        else {
-            console.log("Products table created");
-        }
-     });
-};
-
+// needs to be moved into a different document
 var products = [
   {
     title: "moitie cathedralskirt",
@@ -79,12 +38,82 @@ var products = [
   }
 ];
 
+var users = [
+    {
+        username: 'user1',
+        password: '123',
+        shopcart: [132,434]  
+    },
+    {
+        username: 'user2',
+        password: '123',
+        shopcart: [1343,4344]
+    }
+];
+
+
+// parse application/json
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// Connect to database
+var client = new pg.Client(db_config);
+
+client.connect(function (err) {
+    if (err) throw err;
+
+    console.log('connected');
+});
+
+var server = app.listen(8000);
+
+function deleteTables(){
+    client.query('DROP TABLE IF EXISTS Products', function(err, result) {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            console.log("product table deleted");
+        }
+    });
+
+    client.query('DROP TABLE IF EXISTS Users', function(err, result) {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            console.log("users table deleted");
+        }
+    });
+};
+
+function createTables(){
+    //products
+    client.query('CREATE TABLE Products(did integer, title varchar(150), price decimal, description text, images text[])', function(err, result) {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            console.log("Products table created");
+        }
+     });
+    //users
+    client.query('CREATE TABLE Users(username varchar(30), password varchar(30), shopcart integer[])', function(err, result) {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            console.log("Products table created");
+        }
+     });
+};
+
 function addProducts(){
     //do a for each and make an array of queries.
     console.log("adding products");
     _.forEach(products, function(product, index){
         var id = index+1;
-        var query = 'INSERT INTO Products VALUES('+id+ ',\'' +product.title + '\','+ product.price+ ','+ '\'' +product.description + '\','+'Array[';
+        var query = 'INSERT INTO Products VALUES(' + id + ',\'' + product.title + '\','+ product.price+ ','+ '\'' +product.description + '\','+'Array[';
 
         _.forEach(product.images, function(image, index){
             query += '\''+ image + '\'';
@@ -102,10 +131,34 @@ function addProducts(){
     });
 };
 
+function addUsers(){
+    console.log("adding users");
+    _.forEach(users, function(user, index){
+        var id = index+1;
+        var query = 'INSERT INTO Users VALUES(\''+ user.username + '\', \'' + user.password + '\',' + 'Array[';
+
+        _.forEach(user.shopcart, function(id, index){
+            query += id;
+            var cart = user.shopcart;
+            if(index !== cart.length-1){
+                query += ',';
+            }
+        });
+
+        query += '])';
+        client.query(query, function(err, result){
+            if(err){
+                console.log(err);
+            }
+        });
+    });
+};
+
 
 deleteTables();
 createTables();
 addProducts();
+addUsers();
 
 
 
