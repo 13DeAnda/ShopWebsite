@@ -12,7 +12,7 @@ function($scope, ajaxUtil, $routeParams){
 	};
 
 	$scope.onGetProduct = function(response){
-		$scope.product = response.data[0];
+		$scope.product = response.data.data;
 		$scope.currentImage = $scope.product.images[0]; 
 	};
 

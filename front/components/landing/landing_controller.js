@@ -9,7 +9,7 @@ function($scope, ajaxUtil){
 	};
 
 	$scope.onGetFeaturedProducts = function(response){
-		$scope.featuredProducts = response.data;
+		$scope.featuredProducts = response.data.data;
 	};
 
 	$scope.getFeaturedProducts();
