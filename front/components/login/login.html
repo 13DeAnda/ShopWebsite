@@ -1,0 +1,34 @@
+<div class="login">
+	<div class="col-md-4 container">
+		<h3 class="title"> {{title}}</h3>
+		<div class="row">
+			<input class="input" placeholder="username" type="text" ng-model="loginData.username" >
+		</div>
+		<div class="row">
+			<input class="input" placeholder="password"  type="password" ng-model="loginData.password" >
+		</div>
+		<div ng-show="registerDisplay" class="row">
+			<input class="input" placeholder="password"  type="password" ng-model="passwordMatch" >
+			<div class="errorMessage">
+			{{matchErrorMessage}}
+			</div>
+		</div>
+
+		<div ng-hide="registerDisplay" class="row button">
+			<input class="submitButton" type="button" value="login " ng-click="login()"> 
+			<div class="row links">
+				<a >Forgot password? </a> || <a ng-click="showRegister()">Register</a>
+			</div>
+		</div>
+		<div ng-show="registerDisplay" class="row button">
+			<input class="submitButton" type="button" value="register" ng-click="register()"> 
+			<div class="row links">
+				 <a ng-click="showLogin()"> <<< go back to login</a>
+			</div>
+		</div>
+
+		<div ng-show="errorMessage" class="row errorMessage">
+			{{errorMessage}}
+		</div>
+	</div>
+</div>

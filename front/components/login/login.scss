@@ -1,0 +1,36 @@
+.login{
+	min-height: 300px;
+
+	.container{
+		margin-left: 20px;
+		
+	}
+	.title{
+		margin-left: auto;
+	}
+	.input{
+		margin-top: 15px;
+		height: 30px;
+		width: 170px;
+		border-radius: 6px;
+		text-align: center;
+	}
+	.submitButton{
+		margin-top: 20px;
+		margin-left: 12px; 
+		width: 140px;
+		height: 26px;
+		background-color: black;
+		border-radius: 6px;
+		color: gray;
+	}
+	.links{
+		margin-top: 10px;
+		margin-left: auto;
+	}
+	.errorMessage{
+		color: red;
+		weight: bold;
+		font-size: 15px;
+	}
+}
