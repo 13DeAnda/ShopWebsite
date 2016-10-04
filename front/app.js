@@ -3,7 +3,8 @@ angular.module('black', ['ngRoute',
                         'black.HeaderModule.directives',
                         'black.FooterModule.directives',
                         'black.ProductModule.controller',
-                        'black.ProductTumbnailModule.directives'
+                        'black.ProductTumbnailModule.directives',
+                        'black.LoginModule.controller'
                         ])
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider
@@ -14,6 +15,10 @@ angular.module('black', ['ngRoute',
     .when('/product/:id', {
       templateUrl: 'html/product.html',
       controller: 'ProductController'
+    })
+    .when('/login', {
+      templateUrl: 'html/login.html',
+      controller: 'LoginController'
     })
     .otherwise({
       redirectTo: '/'

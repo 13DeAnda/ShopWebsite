@@ -75,8 +75,8 @@ app.get('/api/product/:id', function(req, res) {
 
 app.get('/api/user/login', function(req, res) {
 	return when.promise(function(resolve, reject){
-		var username = req.body.username;
-  	var password = req.body.password;
+		var username = req.query.username;
+  	var password = req.query.password;
   	var query = 'select * from Users WHERE username = \''+ username + "\'";
 
   	client.query(query)
@@ -100,9 +100,9 @@ app.get('/api/user/login', function(req, res) {
 	}.bind(this));
 });
 
-/// modify to promise.when.all 
 app.post('/api/user/register', function(req, res) {
 	return when.promise(function(resolve, reject){
+    console.log("gets the body", req.body);
 		var username = req.body.username;
   	var password = req.body.password;
   	
