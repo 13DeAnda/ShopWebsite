@@ -1,6 +1,6 @@
-angular.module('black.LoginModule.controller', ['AjaxModule'])
-.controller('LoginController', ['$scope', 'ajaxUtil',
-function($scope, ajaxUtil){
+angular.module('black.LoginModule.controller', ['AjaxModule', 'ngCookies'])
+.controller('LoginController', ['$scope', 'ajaxUtil', '$cookies',
+function($scope, ajaxUtil,$cookies){
 	$scope.loginData = {
 	    username : null,
 	    password : null,
@@ -13,10 +13,12 @@ function($scope, ajaxUtil){
 		$scope.registerDisplay = true;
 		$scope.title = "Register";
 	};
+	
 	$scope.showLogin = function(){
 		$scope.registerDisplay = false;
 		$scope.title = "Login";
 	};	
+
 	$scope.login = function (){
 		console.log("on login function");
 		if($scope.loginData.username && $scope.loginData.password){
@@ -38,6 +40,7 @@ function($scope, ajaxUtil){
 			console.log("error login in", error);
 		}
 		else{
+			$cookies.blackUuuid = response.data.data.uuid;
 			console.log("the user's log in", response.data.data);
 		}
 	};
@@ -70,6 +73,7 @@ function($scope, ajaxUtil){
 			console.log("error register in", error);
 		}
 		else{
+			$cookies.blackUuuid = response.data.uuid;
 			console.log("the user's register in", response.data);
 		}
 	};

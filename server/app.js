@@ -6,6 +6,9 @@ var expressSession = require('express-session');
 var bodyParser = require('body-parser');
 var when = require('when');
 
+var uuid = require('node-uuid');
+var bCrypt= require('bCrypt-nodejs');
+
 var pg = require('pg');
 var db_config = require('./db');
 
@@ -30,7 +33,6 @@ client.connect(function (err) {
 
   console.log('connected');
 });
-
 
 app.get('/api/products', function(req, res) {
  	return when.promise(function(resolve, reject){
@@ -83,8 +85,12 @@ app.get('/api/user/login', function(req, res) {
   		.then(function(users){
   			if(users.rows.length > 0){
   				var user = users.rows[0];
-  				if(user.password === password){
-  					resolve(res.send({data: user}));
+  				if(bCrypt.compareSync(password, user.password)){
+            var data = {
+              uuid: user.uuid,
+              cart: user.shopcart
+            };
+  					resolve(res.send({data: data}));
   				}
   				else{
   					reject(res.send(400, {error: "invalid password"}));
@@ -102,12 +108,17 @@ app.get('/api/user/login', function(req, res) {
 
 app.post('/api/user/register', function(req, res) {
 	return when.promise(function(resolve, reject){
-    console.log("gets the body", req.body);
+
 		var username = req.body.username;
   	var password = req.body.password;
   	
   	var query = 'select * from Users WHERE username = \''+ username + "\'";
-  	var queryPost = 'INSERT INTO Users VALUES( \''+ username + '\', \'' + password +'\', Array[0])';
+    var newUuid = uuid.v4();
+
+    var encryptedPassword = bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
+
+
+  	var queryPost = 'INSERT INTO Users VALUES( \''+ username + '\', \'' + encryptedPassword + '\',\'' + newUuid+ '\', Array[0])';
   	
   	if(!username || !password){
   		reject(res.send(400, {error: "not username or password sent"}));	
@@ -120,6 +131,7 @@ app.post('/api/user/register', function(req, res) {
   			else if(users.rows.length > 0 ){
   				reject(res.send(400, {error: "username already exist"}));		
   			}
+
   			return client.query(queryPost)
   		}.bind(this))
   		.then(function(newUser, err){
@@ -127,7 +139,7 @@ app.post('/api/user/register', function(req, res) {
   				reject(res.send(400, {error: "database error"}));	
   			}
   			else{
-  				resolve(res.send({data: newUser.rows}));
+  				resolve(res.send({uuid: newUuid}));
   			}
   		}.bind(this))
   		.catch(function(err){

@@ -6,6 +6,9 @@ var _ = require('lodash');
 var pg = require('pg');
 var db_config = require('./db');
 
+var uuid = require('node-uuid');
+var bCrypt= require('bCrypt-nodejs');
+
 var app = express();
 app.use(expressSession({secret: 'key'}));
 app.use(express.static(path.resolve(__dirname + '/../front/static')));
@@ -98,7 +101,7 @@ function createTables(){
         }
      });
     //users
-    client.query('CREATE TABLE Users(username varchar(30), password varchar(30), shopcart integer[])', function(err, result) {
+    client.query('CREATE TABLE Users(username varchar(30), password varchar(100), uuid varchar(50), shopcart integer[])', function(err, result) {
         if (err) {
             console.log(err);
         }
@@ -135,7 +138,10 @@ function addUsers(){
     console.log("adding users");
     _.forEach(users, function(user, index){
         var id = index+1;
-        var query = 'INSERT INTO Users VALUES(\''+ user.username + '\', \'' + user.password + '\',' + 'Array[';
+        var newUuid = uuid.v4();
+        var encryptedPassword = bCrypt.hashSync(user.password, bCrypt.genSaltSync(10), null);
+
+        var query = 'INSERT INTO Users VALUES(\''+ user.username + '\', \'' + encryptedPassword + '\',\'' + newUuid+ '\', Array[';
 
         _.forEach(user.shopcart, function(id, index){
             query += id;
