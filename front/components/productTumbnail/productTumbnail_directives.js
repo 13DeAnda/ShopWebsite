@@ -1,12 +1,10 @@
 angular.module('black.ProductTumbnailModule.directives', []).
 directive("productTumbnailDirective",
-[
-function(){
+['$location',
+function($location){
   'use strict';
 
-  function linkingFunction(scope, element, attrs){
-    scope.element = element;
-
+  function linkingFunction(scope){
   }
 
   function controller($scope){
@@ -23,7 +21,6 @@ function(){
       if($scope.isSelected === true){
         $scope.isSelected = false;
       }
-      
     };
   }
   controller.$inject = ['$scope'];
