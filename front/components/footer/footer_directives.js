@@ -1,13 +1,14 @@
-angular.module('black.FooterModule.directives', [])
-.directive("footerDirective",
-[
-function(){
+angular.module('black.FooterModule.directives', ['black.HelperUtilModule.services'])
+.directive("footerDirective", ['helperUtility',
+function(helperUtility){
   'use strict';
 
   function linkingFunction(scope, element, attrs){
     scope.element = element;
   }
-  function controller($scope){
+  function controller($scope, helperUtil){
+
+    $scope.isMobile = helperUtility.isMobile()? 'mobile' : 'col-md-4';
 
     $scope.$on("$destroy", function(){
       $scope.element = null;
