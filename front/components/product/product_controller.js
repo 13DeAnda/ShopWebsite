@@ -1,6 +1,6 @@
-angular.module('black.ProductModule.controller', ['AjaxModule'])
-.controller('ProductController', ['$scope', 'ajaxUtil', '$routeParams',
-function($scope, ajaxUtil, $routeParams){
+angular.module('black.ProductModule.controller', ['black.ProductModule.services'])
+.controller('ProductController', ['$scope', 'productUtility', '$routeParams',
+function($scope, productUtility, $routeParams){
 	//By standar a product must have at least one.
 
 	$scope.imageChange = function(url){
@@ -8,7 +8,7 @@ function($scope, ajaxUtil, $routeParams){
 	};
 
 	$scope.getProduct = function(){
-		ajaxUtil.get('/api/product/'+$routeParams.id, $scope, "onGetProduct");
+		productUtility.getProduct($routeParams.id, $scope, 'onGetProduct');
 	};
 
 	$scope.onGetProduct = function(response){

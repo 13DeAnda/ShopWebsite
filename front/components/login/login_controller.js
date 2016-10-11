@@ -1,6 +1,6 @@
-angular.module('black.LoginModule.controller', ['AjaxModule', 'ngCookies'])
-.controller('LoginController', ['$scope', 'ajaxUtil', '$cookies',
-function($scope, ajaxUtil,$cookies){
+angular.module('black.LoginModule.controller', ['ngCookies', 'black.UserModule.services'])
+.controller('LoginController', ['$scope', '$cookies', 'userUtility',
+function($scope,$cookies, userUtility){
 	$scope.loginData = {
 	    username : null,
 	    password : null,
@@ -22,7 +22,7 @@ function($scope, ajaxUtil,$cookies){
 
 	$scope.login = function (){
 		if($scope.loginData.username && $scope.loginData.password){
-			ajaxUtil.get("/api/user/login?username="+$scope.loginData.username+"&password="+$scope.loginData.password, $scope, "onLogin");
+			userUtility.login($scope.loginData.username, $scope.loginData.password, $scope, "onLogin");
 		}
 		else if(!$scope.loginData.password && !$scope.loginData.username){
 			$scope.errors.noData = "you must type an username and password to login";
@@ -47,7 +47,7 @@ function($scope, ajaxUtil,$cookies){
 
 	$scope.register = function(){
 		if($scope.validateRegisterData($scope.loginData.username, $scope.loginData.password, $scope.passwordMatch)){
-			ajaxUtil.post("/api/user/register", $scope.loginData, $scope, "onRegister");
+			userUtility.register($scope.loginData, $scope, "onRegister");
 		}
 	};
 
@@ -65,7 +65,7 @@ function($scope, ajaxUtil,$cookies){
 	$scope.validateRegisterData = function(username, password, matchPassword){
 		var regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,12}/;
 		$scope.errors = {};
-		console.log("matches?", password.match(regex));
+
 		if(!username && !password){
 			$scope.errors.noData = "you must type an username and password to register";
 		}

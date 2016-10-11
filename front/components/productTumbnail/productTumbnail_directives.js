@@ -1,9 +1,8 @@
-angular.module('black.ProductTumbnailModule.directives', []).
-directive("productTumbnailDirective",
-['$location',
-function($location){
+angular.module('black.ProductTumbnailModule.directives', ['black.ProductModule.services']).
+directive("productTumbnailDirective", 
+['productUtility',
+function(productUtility){
   'use strict';
-
   function linkingFunction(scope){
   }
 
@@ -16,11 +15,15 @@ function($location){
       }
       
     };
-
+    //TODO!!! use a toggle
     $scope.offProduct = function(){
       if($scope.isSelected === true){
         $scope.isSelected = false;
       }
+    };
+
+    $scope.productClick = function(){
+      productUtility.navigateToProductDetail($scope.product.did);
     };
   }
   controller.$inject = ['$scope'];

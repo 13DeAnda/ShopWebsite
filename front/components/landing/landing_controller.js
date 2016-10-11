@@ -1,11 +1,10 @@
-angular.module('black.LandingModule.controller', ['AjaxModule', 'black.ProductTumbnailModule.directives'])
-.controller('LandingController', ['$scope', 'ajaxUtil',
-function($scope, ajaxUtil){
+angular.module('black.LandingModule.controller', ['AjaxModule', 'black.ProductTumbnailModule.directives', 'black.ProductModule.services'])
+.controller('LandingController', ['$scope', 'ajaxUtil', 'productUtility',
+function($scope, ajaxUtil, productUtility){
+	
 	//TODO: would have to be retrived on api's as either recomendations or most popular.
-
-
 	$scope.getFeaturedProducts = function(){
-		ajaxUtil.get('/api/products', $scope, "onGetFeaturedProducts");
+		productUtility.getProducts($scope, 'onGetFeaturedProducts');
 	};
 
 	$scope.onGetFeaturedProducts = function(response){
