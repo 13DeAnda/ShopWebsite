@@ -20,4 +20,33 @@
 			width: 20px;
 		}
 	}
+	.mobileHamburgerMenu{
+		margin-left: 0;
+		width: 0;
+		.mobileMenuIcon{
+			height: 70px;
+			width: 70px;
+		}
+	}
+	.mobileMenu{
+		background-color: white;
+		height: 100%;
+		width: 100%;
+		z-index: 1;
+		position: fixed;
+		top: 0px;
+		bottom: 0px;
+		left: 0;
+
+		.closeButton{
+			text-align: right;
+			margin-right: 20px;
+			font-size: 80px;
+		}
+		.mobileContainer{
+			text-align: center;
+			font-size: 50px;
+			margin-top: 200px;
+		}
+	}
 }

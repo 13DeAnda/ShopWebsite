@@ -7,8 +7,12 @@ function(productUtility){
   }
 
   function controller($scope){
-    $scope.isSelected = false;
 
+    $scope.isSelected = false;
+    $scope.productImageValue = $scope.isMobile? 'productImageMobile' : 'productImage';
+    $scope.titleValue = $scope.isMobile? 'mobileText' : 'title';
+    
+    //toggle could be used
     $scope.onProduct= function(){
       if($scope.isSelected === false){
          $scope.isSelected = true; 
@@ -33,7 +37,8 @@ function(productUtility){
     transclude: false,
     controller: controller,
     scope: {
-        product: '='
+        product: '=',
+        isMobile: '='
     },
     templateUrl: "html/productTumbnail.html",
     link: linkingFunction

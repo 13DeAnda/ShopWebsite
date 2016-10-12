@@ -1,12 +1,13 @@
 .landing{
 	min-height: 500px;
-	margin-left: 10%;
-	width: 90%;
-
 	.product{
 		width: 200px;
 		height: 200px;
 		margin: 20px;
 		display: inline-table;
+	}
+	.productMobile{
+		width: 100%;
+		height: 650px;
 	}
 }

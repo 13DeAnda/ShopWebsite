@@ -1,6 +1,6 @@
-<div class="header row"> 
-	<header-top-links-directive></header-top-links-directive>
-	<div class="row">
+<div class="header"> 
+	<header-top-links-directive is-mobile= "isMobile" ></header-top-links-directive>
+	<div class="row" ng-hide= "isMobile">
 	    <div class= "col-md-4">
 	    	<div class = "row">
 	    		<img class= "logoImage" ng-src="/assets/images/logo.png"/>
