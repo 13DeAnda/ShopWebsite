@@ -11,11 +11,11 @@
 	<div ng-show= "isMobile" class= "mobileHamburgerMenu">
 		<img class= "mobileMenuIcon" 
 			 	 src= "/assets/images/mobileMenu.png"
-			   ng-touch="openMobileMenu" />
+			   ng-touchstart ="openMobileMenu()" />
 	</div>
 
 	<div ng-show= "mobileMenu" class= "mobileMenu">
-		<div class="closeButton" ng-click ="closeMobileMenu">
+		<div class="closeButton" ng-touchstart ="closeMobileMenu()">
 			X
 		</div>
 		<div class ="mobileContainer" ng-repeat ="link in topLinks" 

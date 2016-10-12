@@ -51,13 +51,13 @@ function(){
       item.focus = "on";
     };
 
+    //make a toggle?
     $scope.openMobileMenu = function(){
-      console.log("tapped?");
-      $scope.openMenu = true;
+      $scope.mobileMenu = true;
     };
 
     $scope.closeMobileMenu = function(){
-      $scope.openMenu = false;
+      $scope.mobileMenu= false;
     };
 
     $scope.$on("$destroy", function(){

@@ -36,6 +36,7 @@
     "angular-touch": "^1.5.8",
     "bootstrap": "^3.3.6",
     "jQuery": "^1.7.4",
-    "jquery": "^3.0.0"
+    "jquery": "^3.0.0",
+    "ngtouch": "^1.0.1"
   }
 }
