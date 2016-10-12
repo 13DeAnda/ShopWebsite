@@ -1,44 +1,42 @@
-<div class="login">
-	<div class= "col-md-4 container">
-		<h3 class= "title"> {{title}}</h3>
-		<div class= "row">
-			<input class= "input" placeholder= "username" type= "text" ng-model= "loginData.username" >
-			<div ng-show= "errors.noUsername" class= "errorMessage">
-				{{errors.noUsername}}
-			</div>
-			<div ng-show= "errors.noCorrectUsername" class="errorMessage">
-				{{errors.noCorrectUsername}}
-			</div>
+<div ng-class="loginValue">
+	<h3 class= "title"> {{title}}</h3>
+	<div class= "row">
+		<input ng-class= "inputValue" placeholder= "username" type= "text" ng-model= "loginData.username" >
+		<div ng-show= "errors.noUsername" class= "errorMessage">
+			{{errors.noUsername}}
 		</div>
-		<div class="row">
-			<input class= "input" placeholder= "password"  type= "password" ng-model= "loginData.password" >
-			<div ng-show= "errors.noPassword" class= "errorMessage">
-				{{errors.noPassword}}
-			</div>
-			<div ng-show= "errors.noData" class= "errorMessage">
-				{{errors.noData}}
-			</div>
+		<div ng-show= "errors.noCorrectUsername" class="errorMessage">
+			{{errors.noCorrectUsername}}
 		</div>
-		<div ng-show= "registerDisplay" class= "row">
-			<input class= "input" placeholder= "password"  type= "password" ng-model= "passwordMatch" >
-			<div ng-show= "errors.noPasswordMatch" class="errorMessage">
-				{{errors.noPasswordMatch}}
-			</div>
-			<div ng-show= "errors.noCorrectPassword" class="errorMessage">
-				{{errors.noCorrectPassword}}
-			</div>
+	</div>
+	<div class="row">
+		<input ng-class= "inputValue" placeholder= "password"  type= "password" ng-model= "loginData.password" >
+		<div ng-show= "errors.noPassword" class= "errorMessage">
+			{{errors.noPassword}}
 		</div>
-		<div ng-hide= "registerDisplay" class= "row button">
-			<input class= "submitButton" type= "button" value= "login " ng-click= "login()"> 
-			<div class= "row links">
-				<a >Forgot password? </a> || <a ng-click= "showRegister()">Register</a>
-			</div>
+		<div ng-show= "errors.noData" class= "errorMessage">
+			{{errors.noData}}
 		</div>
-		<div ng-show= "registerDisplay" class= "row button">
-			<input class= "submitButton" type= "button" value= "register" ng-click= "register()"> 
-			<div class="row links">
-				 <a ng-click="showLogin()"> <<< go back to login</a>
-			</div>
+	</div>
+	<div ng-show= "registerDisplay" class= "row">
+		<input ng-class= "inputValue" placeholder= "password"  type= "password" ng-model= "passwordMatch" >
+		<div ng-show= "errors.noPasswordMatch" class="errorMessage">
+			{{errors.noPasswordMatch}}
+		</div>
+		<div ng-show= "errors.noCorrectPassword" class="errorMessage">
+			{{errors.noCorrectPassword}}
+		</div>
+	</div>
+	<div ng-hide= "registerDisplay" class= "row button">
+		<input ng-class ="submitButtonValue" type= "button" value= "login " ng-click= "login()"> 
+		<div class= "row links">
+			<a >Forgot password? </a> || <a ng-click= "showRegister()">Register</a>
+		</div>
+	</div>
+	<div ng-show= "registerDisplay" class= "row button">
+		<input ng-class ="submitButtonValue" type= "button" value= "register" ng-click= "register()"> 
+		<div class="row links">
+			 <a ng-click="showLogin()"> <<< go back to login</a>
 		</div>
 	</div>
 </div>
