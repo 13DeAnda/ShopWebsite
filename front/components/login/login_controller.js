@@ -1,10 +1,17 @@
-angular.module('black.LoginModule.controller', ['ngCookies', 'black.UserModule.services'])
-.controller('LoginController', ['$scope', '$cookies', 'userUtility',
-function($scope,$cookies, userUtility){
+angular.module('black.LoginModule.controller', ['ngCookies', 
+												'black.UserModule.services',
+												'black.HelperUtilModule.services'])
+.controller('LoginController', ['$scope', '$cookies', 'userUtility', 'helperUtility',
+function($scope,$cookies, userUtility, helperUtil){
 	$scope.loginData = {
 	    username : null,
 	    password : null,
   	};
+
+  	$scope.isMobile = helperUtil.isMobile();
+  	$scope.loginValue = $scope.isMobile? 'login mobileText' : 'login container';
+  	$scope.inputValue = $scope.isMobile? 'inputMobile': 'input';
+  	$scope.submitButtonValue = $scope.isMobile? 'submitButtonMobile' : 'submitButton';
   	$scope.registerDisplay = false;
   	$scope.title = "Login";
   	$scope.errors = {};
