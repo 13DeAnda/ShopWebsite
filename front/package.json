@@ -33,6 +33,7 @@
     "angular-bootstrap": "^0.12.2",
     "angular-cookies": "^1.5.7",
     "angular-route": "^1.5.7",
+    "angular-touch": "^1.5.8",
     "bootstrap": "^3.3.6",
     "jQuery": "^1.7.4",
     "jquery": "^3.0.0"

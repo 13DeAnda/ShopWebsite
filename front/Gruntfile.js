@@ -61,7 +61,8 @@ module.exports = function(grunt) {
             expand: true,
             flatten: true,
             src: ['node_modules/angular/angular.js',
-                  'node_modules/bootstrap/dist/css/bootstrap.css'
+                  'node_modules/bootstrap/dist/css/bootstrap.css',
+                  'node_modules/angular-touch/angular-touch.js'
                   ],
             dest: 'static/node_modules/',
             filter: 'isFile'

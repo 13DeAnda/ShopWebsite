@@ -7,8 +7,11 @@
 	 	</div>
 	</div>
 
-	<img src="{{product.images[0]}}" class = "productImage"><br>
-	<div class="title" ng-show="!isSelected">
+	<img src="{{product.images[0]}}" ng-class = "productImageValue"><br>
+	<div ng-class="titleValue" ng-hide="isSelected">
 		{{product.title}}
+	</div>
+	<div class="mobileText" ng-show="isMobile">
+		{{product.price | currency}}
 	</div>
 </div>
