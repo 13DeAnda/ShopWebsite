@@ -1,7 +1,15 @@
-angular.module('black.ProductModule.controller', ['black.ProductModule.services'])
-.controller('ProductController', ['$scope', 'productUtility', '$routeParams',
-function($scope, productUtility, $routeParams){
-	//By standar a product must have at least one.
+angular.module('black.ProductModule.controller', ['black.ProductModule.services',
+												  'black.HelperUtilModule.services'])
+.controller('ProductController', ['$scope', 'productUtility', '$routeParams', 'helperUtility',
+function($scope, productUtility, $routeParams, helperUtil){
+	
+	$scope.isMobile = helperUtil.isMobile();
+	$scope.productValue = $scope.isMobile? 'product':'product container';
+	$scope.mainImageValue = $scope.isMobile? 'mainImageMobile' : 'mainImage';
+	$scope.cartButtonValue = $scope.isMobile? 'cartButtonMobile' : 'cartButton';
+	$scope.priceValue = $scope.isMobile? 'price mobileText' : 'price';
+	$scope.titleValue = $scope.isMobile? 'title mobileText' : 'title';
+	$scope.descriptionValue = $scope.isMobile? 'description mobileText' : 'description';
 
 	$scope.imageChange = function(url){
 		$scope.currentImage = url;
