@@ -30,23 +30,27 @@
       {{product.title}}
     </div>
     <div class = "col-lg-6">
-      <div class="col-sm-2 desc dataText">
+      <div ng-class="dataValue">
         {{product.price | currency}}
       </div>
-      <div class="col-sm-2 desc dataText">
+      <div ng-class="dataValue">
         <input class ="inputBox" type="number" min=1 value={{product.quantity}} />
       </div>
-      <div class="col-sm-2 desc removeX dataText" ng-click ="remove(product.did)">
+      <div ng-hide ="isMobile" class="col-sm-2 desc removeX dataText" ng-click ="remove(product.did)">
         X
       </div>
-      <div class="col-sm-2 desc dataText">
+      <div ng-show ="isMobile" class="dataValue" ng-click ="remove(product.did)">
+        remove
+      </div>
+      <div ng-class="dataValue">
         {{(product.quantity * product.price) | currency}}
       </div>
     </div>
   </div>  
 
-  <div class ="row buttons">
-    <input class ="button" type= "button" value= "check Out " ng-click= "checkout()"> 
+  <div ng-class ="buttonsValue">
+      total: {{total | currency}} <br/>
+    <input class ="button" type= "button" value= "Check Out " ng-click= "checkout()"> 
   </div>
 
 </div>
