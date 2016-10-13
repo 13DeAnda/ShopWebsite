@@ -1,0 +1,52 @@
+<div ng-class ="cartValue" >
+  <div ng-class ="titleValue">
+    My Shop Cart
+  </div>
+
+  <div class= "row space" ng-hide="isMobile">
+    <div class ="col-lg-6 desc">
+      Product
+    </div>
+    <div class = "col-lg-6">
+      <div class="col-sm-2 desc">
+        Price
+      </div>
+      <div class="col-sm-2 desc">
+        Quantity
+      </div>
+      <div class="col-sm-2 desc">
+        Remove
+      </div>
+      <div class="col-sm-2 desc">
+        Subtotal
+      </div>
+    </div>
+  </div>  
+
+  <div class= "row space" ng-repeat ="product in products">
+
+    <div ng-class ="productValue" ng-click ="goTo(did)">
+      <img src= "{{product.imageSrc}}" class ="image"> <br/>
+      {{product.title}}
+    </div>
+    <div class = "col-lg-6">
+      <div class="col-sm-2 desc dataText">
+        {{product.price | currency}}
+      </div>
+      <div class="col-sm-2 desc dataText">
+        <input class ="inputBox" type="number" min=1 value={{product.quantity}} />
+      </div>
+      <div class="col-sm-2 desc removeX dataText" ng-click ="remove(product.did)">
+        X
+      </div>
+      <div class="col-sm-2 desc dataText">
+        {{(product.quantity * product.price) | currency}}
+      </div>
+    </div>
+  </div>  
+
+  <div class ="row buttons">
+    <input class ="button" type= "button" value= "check Out " ng-click= "checkout()"> 
+  </div>
+
+</div>

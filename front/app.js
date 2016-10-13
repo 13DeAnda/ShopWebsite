@@ -5,7 +5,8 @@ angular.module('black', ['ngRoute',
                         'black.ProductModule.controller',
                         'black.ProductTumbnailModule.directives',
                         'black.LoginModule.controller',
-                        'black.PathModule.services'
+                        'black.PathModule.services',
+                        'black.CartModule.controller'
                         ])
 .config(['$routeProvider', 'navigationUrl', function($routeProvider, navigationUrl) {
   $routeProvider
@@ -20,6 +21,10 @@ angular.module('black', ['ngRoute',
     .when(navigationUrl.login(), {
       templateUrl: 'html/login.html',
       controller: 'LoginController'
+    })
+    .when(navigationUrl.cart(), {
+      templateUrl: 'html/cart.html',
+      controller: 'CartController'
     })
     .otherwise({
       redirectTo: '/'
