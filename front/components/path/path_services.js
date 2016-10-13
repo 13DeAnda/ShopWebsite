@@ -5,6 +5,9 @@ angular.module('black.PathModule.services', [])
   },
   login: function() {
     return '/login/';
+  },
+  cart: function() {
+    return '/cart/';
   }
 })
 .constant('apiUrl', {
