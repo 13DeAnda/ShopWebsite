@@ -133,7 +133,7 @@ app.post('/api/user/register', function(req, res) {
     }
 
     var query = 'select * from Users WHERE username = \''+ username + "\'";
-  	var queryPost = 'INSERT INTO Users VALUES( \''+ username + '\', \'' + encryptedPassword + '\',\'' + newUuid+ '\', Array[0])';
+  	var queryPost = 'INSERT INTO Users VALUES( \''+ username + '\', \'' + encryptedPassword + '\',\'' + newUuid+ '\')';
     var encryptedPassword = bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);  	
     var newUuid = uuid.v4();
 

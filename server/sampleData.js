@@ -45,14 +45,13 @@ var users = [
     {
         username: 'user1',
         password: '123',
-        shopcart: [132,434]  
     },
     {
         username: 'user2',
         password: '123',
-        shopcart: [1343,4344]
     }
 ];
+
 
 
 // parse application/json
@@ -88,6 +87,14 @@ function deleteTables(){
             console.log("users table deleted");
         }
     });
+    client.query('DROP TABLE IF EXISTS Cart', function(err, result) {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            console.log("Cart table deleted");
+        }
+    });
 };
 
 function createTables(){
@@ -101,12 +108,21 @@ function createTables(){
         }
      });
     //users
-    client.query('CREATE TABLE Users(username varchar(30), password varchar(100), uuid varchar(50), shopcart integer[])', function(err, result) {
+    client.query('CREATE TABLE Users(username varchar(30), password varchar(100), uuid varchar(50))', function(err, result) {
         if (err) {
             console.log(err);
         }
         else {
-            console.log("Products table created");
+            console.log("Users table created");
+        }
+     });
+    //cart
+    client.query('CREATE TABLE Cart(userId integer, itemId integer, quantity integer, price money, title varchar(40), src varchar(50))', function(err, result) {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            console.log("Cart table created");
         }
      });
 };
@@ -141,17 +157,8 @@ function addUsers(){
         var newUuid = uuid.v4();
         var encryptedPassword = bCrypt.hashSync(user.password, bCrypt.genSaltSync(10), null);
 
-        var query = 'INSERT INTO Users VALUES(\''+ user.username + '\', \'' + encryptedPassword + '\',\'' + newUuid+ '\', Array[';
+        var query = 'INSERT INTO Users VALUES(\''+ user.username + '\', \'' + encryptedPassword + '\',\'' + newUuid+ '\')';
 
-        _.forEach(user.shopcart, function(id, index){
-            query += id;
-            var cart = user.shopcart;
-            if(index !== cart.length-1){
-                query += ',';
-            }
-        });
-
-        query += '])';
         client.query(query, function(err, result){
             if(err){
                 console.log(err);
@@ -159,7 +166,6 @@ function addUsers(){
         });
     });
 };
-
 
 deleteTables();
 createTables();
