@@ -6,6 +6,7 @@ var when = require('when');
 
 //datastores
 var user = require('./dataStores/user_datastore.js')
+var product = require('./dataStores/product_datastore.js')
 
 var pg = require('pg');
 var db_config = require('./db');
@@ -15,9 +16,8 @@ app.use(expressSession({secret: 'key'}));
 app.use(express.static(path.resolve(__dirname + '/../front/static')));
 
 app.get('/', function(req, res) {
-	res.sendfile('index.html');
+  res.sendfile('index.html');
 });
-
 
 // parse application/json
 app.use(bodyParser.json());
@@ -28,77 +28,61 @@ var client = new pg.Client(db_config);
 
 client.connect(function (err) {
   if (err) throw err;
-
   console.log('connected');
 });
 
 app.get('/api/products', function(req, res) {
- 	return when.promise(function(resolve, reject){
-  	var query = 'select * from products';
+  return when.promise(function(resolve, reject){
 
-  	client.query(query)
-  		.then(function(products){
-  			if(products.rows.length > 0){
-  				resolve(res.send({data: products.rows}));
-  			}
-  			else{
-  				reject(res.send(400, {error: "no products available"}));
-  			}					
-  		}.bind(this))
-  		.catch(function(err){
-  			reject(res.send(err))
-  		}.bind(this));
-	}.bind(this));
+    product.getProducts(client)
+      .then(function(products){
+          resolve(res.send(products));      
+      }.bind(this))
+      .catch(function(err){
+        reject(res.status(err.status).send(err.data));
+      }.bind(this));
+  }.bind(this));
 });
-
 
 app.get('/api/product/:id', function(req, res) {
   return when.promise(function(resolve, reject){
-  	var id = req.params.id;
-  	var query = 'select * from products where did =' + id;
+  var id = req.params.id;
 
-  	client.query(query)
-  		.then(function(products){
-  			if(products.rows.length > 0){
-  				var product = products.rows[0];
-  				resolve(res.send({data: product}));
-  			}
-  			else{
-  				reject(res.send(404, {error: "product not found"}));
-  			}					
-  		}.bind(this))
-  		.catch(function(err){
-  			reject(res.send(err))
-  		}.bind(this));
-	}.bind(this));
+   product.getProduct(client, id)
+      .then(function(product){
+          resolve(res.send(product));      
+      }.bind(this))
+      .catch(function(err){
+        reject(res.status(err.status).send(err.data));
+      }.bind(this));
+  }.bind(this));
 });
 
 app.get('/api/user/login', function(req, res) {
-	return when.promise(function(resolve, reject){
-		var username = req.query.username;
-  	var password = req.query.password;
+  return when.promise(function(resolve, reject){
+    var username = req.query.username;
+    var password = req.query.password;
 
     if(!username || !password){
       reject(res.status(401).send({error: "missing input"}));
     }
 
-  	user.login(client, username, password)
-  		.then(function(loginData){
+    user.login(client, username, password)
+      .then(function(loginData){
           resolve(res.send(loginData));
   
-  		}.bind(this))
-  		.catch(function(err){
-  			reject(res.status(err.status).send(err.data));
-  		}.bind(this));
-	}.bind(this));
+      }.bind(this))
+      .catch(function(err){
+        reject(res.status(err.status).send(err.data));
+      }.bind(this));
+  }.bind(this));
 });
 
 app.post('/api/user/register', function(req, res) {
-	return when.promise(function(resolve, reject){
-
-		var username = req.body.username;
-  	var password = req.body.password;
-  	var regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+  return when.promise(function(resolve, reject){
+    var username = req.body.username;
+    var password = req.body.password;
+    var regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
 
     //ALL of these shall be moved into schema tester
     if(!username || !password){
@@ -115,10 +99,10 @@ app.post('/api/user/register', function(req, res) {
       .then(function(loginData){
           resolve(res.send(loginData));
       }.bind(this))
-  		.catch(function(err){
-  			reject(res.status(err.status).send(err.data))
-  		}.bind(this));
-	}.bind(this));
+      .catch(function(err){
+        reject(res.status(err.status).send(err.data))
+      }.bind(this));
+  }.bind(this));
 });
 
 
