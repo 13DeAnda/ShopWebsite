@@ -15,7 +15,7 @@ function getProducts(client){
         }         
       }.bind(this))
       .catch(function(err){
-        reject(res.send(err))
+        reject(err)
       }.bind(this));
   }.bind(this));  
 };
@@ -35,7 +35,7 @@ function getProduct(client, id){
         }         
       }.bind(this))
       .catch(function(err){
-        reject(res.send(err))
+        reject(err)
       }.bind(this));
   }.bind(this));
 };

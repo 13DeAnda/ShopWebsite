@@ -5,19 +5,19 @@ angular.module('AjaxModule', [])
   var ajaxModule = {};
 
   ajaxModule.get = function(path, scope, callback) {
-    return $http.get(path).then(scope[callback]);
+    return $http.get(path).then(scope[callback], scope[callback]);
   };
 
   ajaxModule.post = function(path, data, scope, callback) {
-    return $http.post(path, data).then(scope[callback]);
+    return $http.post(path, data).then(scope[callback], scope[callback]);
   };
 
   ajaxModule.put = function(path, data, scope, callback) {
-    return $http.put(path, data).then(scope[callback]);
+    return $http.put(path, data).then(scope[callback], scope[callback]);
   };
 
   ajaxModule.delete = function(path, scope, callback) {
-    return $http.delete(path).then(scope[callback]);
+    return $http.delete(path).then(scope[callback], scope[callback]);
   };
 
   return ajaxModule;

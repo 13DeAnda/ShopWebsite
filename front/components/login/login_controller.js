@@ -45,6 +45,7 @@ function($scope,$cookies, userUtility, helperUtil){
 	$scope.onLogin = function(response, error){
 		if(error){
 			console.log("error login in", error);
+			//TODO: these need to be handled and displayed
 		}
 		else{
 			$cookies.blackUuuid = response.data.data.uuid;

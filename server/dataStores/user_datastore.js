@@ -20,10 +20,12 @@ function login(client, username, password){
             return client.query(queryUpdate)            
           }
           else{
-            reject(res.send({status:401, data: {error: "invalid password"}}));
+            console.log("Was user not found?");
+            reject({status:401, data: {error: "invalid password"}});
           }   
         }
         else{
+
           reject({status:401, data:{error: "user not found"}});
         }
       }.bind(this))
@@ -83,7 +85,7 @@ function getUserByUuid(client, uuid){
 
       }.bind(this))
       .catch(function(err){
-        reject(res.send(err));
+        reject(err);
       }.bind(this))
   });
 };
