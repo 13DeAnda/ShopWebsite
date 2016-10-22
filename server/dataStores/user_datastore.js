@@ -4,6 +4,7 @@ var uuid = require('node-uuid');
 var bCrypt = require('bCrypt-nodejs');
 
 //TODO!! need schema validating functions separate for testing purposes
+
 function login(client, username, password){
   return when.promise(function(resolve, reject){
     var query = 'select * from Users WHERE username = \''+ username + "\'";     
@@ -73,13 +74,19 @@ function register(client, username, password){
 };
 
 //HELPER FUNCTIONS
-function getUserByUuid(client, uuid){
+function getUserByUuid(client, newUuid){
   return when.promise(function(resolve, reject){
-    var query = "select * from Users WHERE uuid = \'" + uuid + "\'";
+    var query = "select * from Users WHERE uuid = \'" + newUuid + "\'";
 
+    if(!newUuid){
+      resolve(null);
+    }
     client.query(query)
       .then(function(users){
-        if(users.rows[0]){
+        if(users.rows.length < 1){
+          resolve(null);
+        }
+        else{
           resolve(users.rows[0]);
         }
 
@@ -90,9 +97,29 @@ function getUserByUuid(client, uuid){
   });
 };
 
+//shall create something for deleting after some time period.
+function createTemporaryUser(client){
+  return when.promise(function(resolve, reject){
+    var newUuid = uuid.v4();
+    var queryPost = 'INSERT INTO Users VALUES( default,  default,  default,  \'' + newUuid+ '\')';
+
+    client.query(queryPost)
+      .then(function(newUser){
+        return getUserByUuid(client, newUuid);
+      }.bind(this))
+      .then(function(newUser){
+        resolve(newUser);
+      }.bind(this))
+      .catch(function(err){
+        reject(err);
+      }.bind(this))
+  });
+}
 
 
 module.exports = {
   login: login,
-  register: register
+  register: register,
+  getUserByUuid: getUserByUuid,
+  createTemporaryUser: createTemporaryUser
 };
