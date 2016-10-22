@@ -5,9 +5,9 @@ var bodyParser = require('body-parser');
 var when = require('when');
 
 //datastores
-var user = require('./dataStores/user_datastore.js')
-var product = require('./dataStores/product_datastore.js')
-
+var user = require('./dataStores/user_datastore.js');
+var product = require('./dataStores/product_datastore.js');
+var cart = require('./datastores/cart_datastore.js');
 var pg = require('pg');
 var db_config = require('./db');
 
@@ -105,7 +105,41 @@ app.post('/api/user/register', function(req, res) {
   }.bind(this));
 });
 
+//for testing purposes
+app.get('/api/carts', function(req,res){
+  client.query('select * from cart', function(err, users){
+    res.send(users.rows);
+  });
+});
 
 
+app.post('/api/cart/', function(req, res){
+  return when.promise(function(resolve, reject){
+    
+    var cartItem = req.body;
+    if(!cartItem.itemId || !cartItem.price || !cartItem.quantity || !cartItem.src ){
+      reject({status: 400, data:{error: "cart item data incomplete"}});
+    }
+
+    user.getUserByUuid(client, req.query.uuid)
+      .then(function(userData){
+        if(!userData){
+          return user.createTemporaryUser(client);
+        }
+        else{
+          return userData;
+        }
+      }.bind(this))
+      .then(function(userData){
+        return cart.addToCart(client, userData, cartItem);
+      }.bind(this))
+      .then(function(cart){
+          resolve(res.send(product));      
+      }.bind(this))
+      .catch(function(err){
+        reject(res.status(err.status).send(err.data));
+      }.bind(this));
+  }.bind(this));
+});
 
 var server = app.listen(8000);

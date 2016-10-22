@@ -42,16 +42,15 @@ var products = [
 ];
 
 var users = [
-    {
-        username: 'user1',
-        password: '123',
-    },
-    {
-        username: 'user2',
-        password: '123',
-    }
+  {
+    username: 'user1',
+    password: '123',
+  },
+  {
+    username: 'user2',
+    password: '123',
+  }
 ];
-
 
 
 // parse application/json
@@ -62,115 +61,112 @@ app.use(bodyParser.urlencoded({ extended: false }));
 var client = new pg.Client(db_config);
 
 client.connect(function (err) {
-    if (err) throw err;
+  if (err) throw err;
 
-    console.log('connected');
+  console.log('connected');
 });
 
 var server = app.listen(8000);
 
 function deleteTables(){
-    client.query('DROP TABLE IF EXISTS Products', function(err, result) {
-        if (err) {
-            console.log(err);
-        }
-        else {
-            console.log("product table deleted");
-        }
-    });
+  client.query('DROP TABLE IF EXISTS Products', function(err, result) {
+      if (err) {
+          console.log(err);
+      }
+      else {
+          console.log("product table deleted");
+      }
+  });
 
-    client.query('DROP TABLE IF EXISTS Users', function(err, result) {
-        if (err) {
-            console.log(err);
-        }
-        else {
-            console.log("users table deleted");
-        }
-    });
-    client.query('DROP TABLE IF EXISTS Cart', function(err, result) {
-        if (err) {
-            console.log(err);
-        }
-        else {
-            console.log("Cart table deleted");
-        }
-    });
+  client.query('DROP TABLE IF EXISTS Users', function(err, result) {
+    if (err) {
+      console.log(err);
+  }
+    else {
+      console.log("users table deleted");
+    }
+  });
+  client.query('DROP TABLE IF EXISTS Cart', function(err, result) {
+    if (err) {
+      console.log(err);
+    }
+    else {
+      console.log("Cart table deleted");
+    }
+  });
 };
 
 function createTables(){
     //products
-    client.query('CREATE TABLE Products(did integer, title varchar(150), price decimal, description text, images text[])', function(err, result) {
-        if (err) {
-            console.log(err);
-        }
-        else {
-            console.log("Products table created");
-        }
+    client.query('CREATE TABLE Products(id SERIAL, title varchar(150), price decimal, description text, images text[])', function(err, result) {
+      if (err) {
+        console.log(err);
+      }
+      else {
+        console.log("Products table created");
+      }
      });
     //users
-    client.query('CREATE TABLE Users(username varchar(30), password varchar(100), uuid varchar(50))', function(err, result) {
-        if (err) {
-            console.log(err);
-        }
-        else {
-            console.log("Users table created");
-        }
+    client.query('CREATE TABLE Users(id SERIAL, username varchar(30), password varchar(100), uuid varchar(50))', function(err, result) {
+      if (err) {
+        console.log(err);
+      }
+      else {
+          console.log("Users table created");
+      }
      });
     //cart
     client.query('CREATE TABLE Cart(userId integer, itemId integer, quantity integer, price money, title varchar(40), src varchar(50))', function(err, result) {
-        if (err) {
-            console.log(err);
-        }
-        else {
-            console.log("Cart table created");
-        }
+      if (err) {
+        console.log(err);
+      }
+      else {
+        console.log("Cart table created");
+      }
      });
 };
 
 function addProducts(){
     //do a for each and make an array of queries.
-    console.log("adding products");
-    _.forEach(products, function(product, index){
-        var id = index+1;
-        var query = 'INSERT INTO Products VALUES(' + id + ',\'' + product.title + '\','+ product.price+ ','+ '\'' +product.description + '\','+'Array[';
+  console.log("adding products");
+  _.forEach(products, function(product, index){
 
-        _.forEach(product.images, function(image, index){
-            query += '\''+ image + '\'';
-            if(product.images.length < index+1){
-                query+= '\'';
-            }
-        });
-        query += '])';
-        
-      client.query(query, function(err, result) {
-            if (err) {
-              console.log(err);
-            }
-        });
+    var query = 'INSERT INTO Products VALUES( default, \'' + product.title + '\','+ product.price+ ','+ '\'' +product.description + '\','+'Array[';
+
+    _.forEach(product.images, function(image, index){
+      query += '\''+ image + '\'';
+      if(product.images.length < index+1){
+        query+= '\'';
+      }
     });
+    query += '])';
+      
+    client.query(query, function(err, result) {
+      if (err) {
+        console.log(err);
+      }
+    });
+  });
 };
 
 function addUsers(){
-    console.log("adding users");
-    _.forEach(users, function(user, index){
-        var id = index+1;
-        var newUuid = uuid.v4();
-        var encryptedPassword = bCrypt.hashSync(user.password, bCrypt.genSaltSync(10), null);
+  console.log("adding users");
+  _.forEach(users, function(user, index){
+    var id = index+1;
+    var newUuid = uuid.v4();
+    var encryptedPassword = bCrypt.hashSync(user.password, bCrypt.genSaltSync(10), null);
 
-        var query = 'INSERT INTO Users VALUES(\''+ user.username + '\', \'' + encryptedPassword + '\',\'' + newUuid+ '\')';
+    var query = 'INSERT INTO Users VALUES(default, \''+ user.username + '\', \'' + encryptedPassword + '\',\'' + newUuid+ '\')';
 
-        client.query(query, function(err, result){
-            if(err){
-                console.log(err);
-            }
-        });
+    client.query(query, function(err, result){
+      if(err){
+        console.log(err);
+      }
     });
+  });
 };
 
 deleteTables();
 createTables();
 addProducts();
 addUsers();
-
-
-
