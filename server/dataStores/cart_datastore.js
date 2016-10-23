@@ -26,4 +26,20 @@ function addToCart (client, user, productData){
   });
 };
 
-module.exports = {addToCart};
+function getUserCart(client, userId){
+  return when.promise(function(resolve, reject){
+    var query = "SELECT * from Cart WHERE userId=" + userId;
+    client.query(query)
+    .then(function(items){
+      resolve(items.rows);
+    }.bind(this))
+    .catch(function(err){
+      reject(err)
+    })
+  });
+};
+
+module.exports = {
+  addToCart : addToCart, 
+  getUserCart: getUserCart
+};

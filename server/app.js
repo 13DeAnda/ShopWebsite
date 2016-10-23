@@ -36,7 +36,7 @@ app.get('/api/products', function(req, res) {
 
     product.getProducts(client)
       .then(function(products){
-          resolve(res.send(products));      
+        resolve(res.send(products));      
       }.bind(this))
       .catch(function(err){
         reject(res.status(err.status).send(err.data));
@@ -106,10 +106,33 @@ app.post('/api/user/register', function(req, res) {
 });
 
 //for testing purposes
-app.get('/api/carts', function(req,res){
-  client.query('select * from cart', function(err, users){
-    res.send(users.rows);
+app.get('/api/test', function(req, res) {
+  
+  client.query('SELECT * from users', function(err, item){
+    res.send(item.rows);
   });
+});
+
+
+app.get('/api/cart', function(req,res){
+  return when.promise(function(resolve, reject){
+    var userUuid = req.query.uuid;
+
+    if(!userUuid){
+      reject({status: 400, data: {error: "user is not loged in"}});
+    }
+
+    user.getUserByUuid(client, userUuid)
+      .then(function(user){
+        return cart.getUserCart(client, user.id);
+      }.bind(this))
+      .then(function(cartItems){
+        resolve(res.send(cartItems));
+      }.bind(this))
+      .catch(function(err){
+        reject(res.status(err.status).send(err.data));
+      }.bind(this));
+  }.bind(this));
 });
 
 
@@ -140,6 +163,10 @@ app.post('/api/cart/', function(req, res){
         reject(res.status(err.status).send(err.data));
       }.bind(this));
   }.bind(this));
+});
+
+app.put('/api/cart', function(req, res){
+
 });
 
 var server = app.listen(8000);
