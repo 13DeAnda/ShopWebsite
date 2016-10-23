@@ -22,7 +22,7 @@ function getProducts(client){
 
 function getProduct(client, id){
   return when.promise(function(resolve, reject){
-    var query = 'select * from products where did =' + id;
+    var query = 'select * from products where id =' + id;
 
     client.query(query)
       .then(function(products){

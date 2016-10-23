@@ -1,10 +1,11 @@
-angular.module('black.CartModule.controller', ['ngCookies', 'black.HelperUtilModule.services'])
-.controller('CartController', ['$scope', '$cookies', 'helperUtility',
-function($scope, $cookies, helperUtility){
+angular.module('black.CartModule.controller', ['ngCookies', 
+                                               'black.HelperUtilModule.services',
+                                               'black.CartModule.services',
+                                               'black.ProductModule.services'])
+.controller('CartController', ['$scope', '$cookies', 'helperUtility', 'cartUtility',
+function($scope, $cookies, helperUtility, cartUtility){
 
   $scope.isMobile = helperUtility.isMobile();
-  console.log("is mobile?", $scope.isMobile);
-
   $scope.titleValue = $scope.isMobile? 'titleMobile' : 'title';
   $scope.cartValue = $scope.isMobile? 'cart text-center' : 'cart container';
   $scope.productValue = $scope.isMobile? 'productMobile' : 'col-lg-6 desc product';
@@ -19,18 +20,20 @@ function($scope, $cookies, helperUtility){
   // make total
   //service to go to product when image or title clicked
   // make a responsive design for when it's web and small
-  $scope.products = [
-    {
-      did: 3,
-      price: 232,
-      imageSrc: "http://img16.shop-pro.jp/PA01096/409/product/83748679_o1.jpg",
-      title: "sacred crosss dress",
-      quantity: 1,
-    }
-  ];
-
-  $scope.goTo = function(id){
-    console.log("goes to function");
+  
+  $scope.getCart = function(){
+    var uuid = $cookies.get('blackUuid');
+    cartUtility.getUserCart(uuid, $scope, 'onGetCart');
   };
+
+  $scope.onGetCart = function(response, error){
+    $scope.products = response.data;
+  };
+
+  $scope.goToProduct = function(id){
+    productUtility.navigateToProductDetail(id);
+  };
+
+  $scope.getCart();
 
 }]);

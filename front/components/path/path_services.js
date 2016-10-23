@@ -22,5 +22,8 @@ angular.module('black.PathModule.services', [])
   },
   register: function(){
     return "/api/user/register";
-  }
+  },
+  cart: function(uuid){
+    return "/api/cart?uuid="+uuid;
+  },
 });

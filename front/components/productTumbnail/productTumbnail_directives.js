@@ -27,7 +27,7 @@ function(productUtility){
     };
 
     $scope.productClick = function(){
-      productUtility.navigateToProductDetail($scope.product.did);
+      productUtility.navigateToProductDetail($scope.product.id);
     };
   }
   controller.$inject = ['$scope'];

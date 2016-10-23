@@ -113,11 +113,10 @@ app.get('/api/test', function(req, res) {
   });
 });
 
-
+//cart
 app.get('/api/cart', function(req,res){
   return when.promise(function(resolve, reject){
     var userUuid = req.query.uuid;
-
     if(!userUuid){
       reject({status: 400, data: {error: "user is not loged in"}});
     }

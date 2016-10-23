@@ -25,7 +25,7 @@
 
   <div class= "row space" ng-repeat ="product in products">
 
-    <div ng-class ="productValue" ng-click ="goTo(did)">
+    <div ng-class ="productValue" ng-click ="goTo(id)">
       <img src= "{{product.imageSrc}}" class ="image"> <br/>
       {{product.title}}
     </div>
@@ -36,10 +36,10 @@
       <div ng-class="dataValue">
         <input class ="inputBox" type="number" min=1 value={{product.quantity}} />
       </div>
-      <div ng-hide ="isMobile" class="col-sm-2 desc removeX dataText" ng-click ="remove(product.did)">
+      <div ng-hide ="isMobile" class="col-sm-2 desc removeX dataText" ng-click ="remove(product.id)">
         X
       </div>
-      <div ng-show ="isMobile" class="dataValue" ng-click ="remove(product.did)">
+      <div ng-show ="isMobile" class="dataValue" ng-click ="remove(product.id)">
         remove
       </div>
       <div ng-class="dataValue">
