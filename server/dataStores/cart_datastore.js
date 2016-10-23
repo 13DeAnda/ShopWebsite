@@ -52,8 +52,23 @@ function updateCart(client, userId, quantity, itemId){
       })
   });
 };
+
+function deleteItem(client, userId, itemId){
+  return when.promise(function(resolve, reject){
+    var queryUpdate = "DELETE FROM Cart WHERE userId = " + userId + " AND itemId = " + itemId;
+    
+    client.query(queryUpdate)
+      .then(function(update){
+        resolve();
+      }.bind(this))
+      .catch(function(err){
+        reject(err)
+      })
+  });
+};
 module.exports = {
   addToCart : addToCart, 
   getUserCart: getUserCart,
-  updateCart: updateCart
+  updateCart: updateCart,
+  deleteItem: deleteItem
 };

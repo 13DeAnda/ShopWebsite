@@ -177,10 +177,38 @@ app.put('/api/cart', function(req, res){
     if(!quantity){
       reject({status: 400, data: {error: "quantity needed to update"}});
     }
+    if(!itemId){
+      reject({status: 400, data: {error: "itemId needed to update"}});
+    }
 
     user.getUserByUuid(client, userUuid)
       .then(function(user){
         return cart.updateCart(client, user.id, quantity, itemId);
+      }.bind(this))
+      .then(function(){
+        resolve(res.send(200));
+      }.bind(this))
+      .catch(function(err){
+        reject(res.status(err.status).send(err.data));
+      }.bind(this));
+  }.bind(this));
+});
+
+app.delete('/api/cart', function(req, res){
+  return when.promise(function(resolve, reject){
+    var userUuid = req.query.uuid;
+    var itemId = req.body.itemId;
+
+    if(!userUuid){
+      reject({status: 400, data: {error: "user is not loged in"}});
+    }
+    if(!itemId){
+      reject({status: 400, data: {error: "itemId needed to delete"}});
+    }
+
+    user.getUserByUuid(client, userUuid)
+      .then(function(user){
+        return cart.deleteItem(client, user.id, itemId);
       }.bind(this))
       .then(function(){
         resolve(res.send(200));
