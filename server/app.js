@@ -36,7 +36,7 @@ app.get('/api/products', function(req, res) {
 
     product.getProducts(client)
       .then(function(products){
-          resolve(res.send(products));      
+        resolve(res.send(products));      
       }.bind(this))
       .catch(function(err){
         reject(res.status(err.status).send(err.data));
@@ -106,10 +106,33 @@ app.post('/api/user/register', function(req, res) {
 });
 
 //for testing purposes
-app.get('/api/carts', function(req,res){
-  client.query('select * from cart', function(err, users){
-    res.send(users.rows);
+app.get('/api/test', function(req, res) {
+  
+  client.query('SELECT * from cart', function(err, item){
+    res.send(item.rows);
   });
+});
+
+
+app.get('/api/cart', function(req,res){
+  return when.promise(function(resolve, reject){
+    var userUuid = req.query.uuid;
+
+    if(!userUuid){
+      reject({status: 400, data: {error: "user is not loged in"}});
+    }
+
+    user.getUserByUuid(client, userUuid)
+      .then(function(user){
+        return cart.getUserCart(client, user.id);
+      }.bind(this))
+      .then(function(cartItems){
+        resolve(res.send(cartItems));
+      }.bind(this))
+      .catch(function(err){
+        reject(res.status(err.status).send(err.data));
+      }.bind(this));
+  }.bind(this));
 });
 
 
@@ -135,6 +158,60 @@ app.post('/api/cart/', function(req, res){
       }.bind(this))
       .then(function(cart){
           resolve(res.send(product));      
+      }.bind(this))
+      .catch(function(err){
+        reject(res.status(err.status).send(err.data));
+      }.bind(this));
+  }.bind(this));
+});
+
+app.put('/api/cart', function(req, res){
+  return when.promise(function(resolve, reject){
+    var userUuid = req.query.uuid;
+    var quantity = req.body.quantity;
+    var itemId = req.body.itemId;
+
+    if(!userUuid){
+      reject({status: 400, data: {error: "user is not loged in"}});
+    }
+    if(!quantity){
+      reject({status: 400, data: {error: "quantity needed to update"}});
+    }
+    if(!itemId){
+      reject({status: 400, data: {error: "itemId needed to update"}});
+    }
+
+    user.getUserByUuid(client, userUuid)
+      .then(function(user){
+        return cart.updateCart(client, user.id, quantity, itemId);
+      }.bind(this))
+      .then(function(){
+        resolve(res.send(200));
+      }.bind(this))
+      .catch(function(err){
+        reject(res.status(err.status).send(err.data));
+      }.bind(this));
+  }.bind(this));
+});
+
+app.delete('/api/cart', function(req, res){
+  return when.promise(function(resolve, reject){
+    var userUuid = req.query.uuid;
+    var itemId = req.body.itemId;
+
+    if(!userUuid){
+      reject({status: 400, data: {error: "user is not loged in"}});
+    }
+    if(!itemId){
+      reject({status: 400, data: {error: "itemId needed to delete"}});
+    }
+
+    user.getUserByUuid(client, userUuid)
+      .then(function(user){
+        return cart.deleteItem(client, user.id, itemId);
+      }.bind(this))
+      .then(function(){
+        resolve(res.send(200));
       }.bind(this))
       .catch(function(err){
         reject(res.status(err.status).send(err.data));

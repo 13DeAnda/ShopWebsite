@@ -26,4 +26,49 @@ function addToCart (client, user, productData){
   });
 };
 
-module.exports = {addToCart};
+function getUserCart(client, userId){
+  return when.promise(function(resolve, reject){
+    var query = "SELECT * from Cart WHERE userId=" + userId;
+    client.query(query)
+    .then(function(items){
+      resolve(items.rows);
+    }.bind(this))
+    .catch(function(err){
+      reject(err)
+    })
+  });
+};
+
+function updateCart(client, userId, quantity, itemId){
+  return when.promise(function(resolve, reject){
+    var queryUpdate = "UPDATE CART SET quantity = "+ quantity + " WHERE userId = " + userId + " AND itemId = " + itemId;
+    
+    client.query(queryUpdate)
+      .then(function(update){
+        resolve();
+      }.bind(this))
+      .catch(function(err){
+        reject(err)
+      })
+  });
+};
+
+function deleteItem(client, userId, itemId){
+  return when.promise(function(resolve, reject){
+    var queryUpdate = "DELETE FROM Cart WHERE userId = " + userId + " AND itemId = " + itemId;
+    
+    client.query(queryUpdate)
+      .then(function(update){
+        resolve();
+      }.bind(this))
+      .catch(function(err){
+        reject(err)
+      })
+  });
+};
+module.exports = {
+  addToCart : addToCart, 
+  getUserCart: getUserCart,
+  updateCart: updateCart,
+  deleteItem: deleteItem
+};
