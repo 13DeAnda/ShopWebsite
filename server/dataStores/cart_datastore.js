@@ -39,7 +39,21 @@ function getUserCart(client, userId){
   });
 };
 
+function updateCart(client, userId, quantity, itemId){
+  return when.promise(function(resolve, reject){
+    var queryUpdate = "UPDATE CART SET quantity = "+ quantity + " WHERE userId = " + userId + " AND itemId = " + itemId;
+    
+    client.query(queryUpdate)
+      .then(function(update){
+        resolve();
+      }.bind(this))
+      .catch(function(err){
+        reject(err)
+      })
+  });
+};
 module.exports = {
   addToCart : addToCart, 
-  getUserCart: getUserCart
+  getUserCart: getUserCart,
+  updateCart: updateCart
 };
