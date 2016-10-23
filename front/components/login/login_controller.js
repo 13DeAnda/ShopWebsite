@@ -48,8 +48,7 @@ function($scope,$cookies, userUtility, helperUtil){
 			//TODO: these need to be handled and displayed
 		}
 		else{
-			$cookies.blackUuuid = response.data.data.uuid;
-			console.log("the user's log in", response);
+			$cookies.put('blackUuid', response.data.data.uuid);
 		}
 	};
 
