@@ -41,7 +41,7 @@ function($scope, productUtility, $routeParams, helperUtil, cartUtility, $cookies
     };
 
     $scope.onAddToCart = function(response){
-
+      $cookies.put('blackUuid', response.data);
     };
 
     $scope.currentImage = "/assets/images/placeholder.jpg";
