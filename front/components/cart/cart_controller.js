@@ -12,7 +12,7 @@ function($scope, $cookies, helperUtility, cartUtility){
   $scope.dataValue = $scope.isMobile? 'dataMobileText' : 'col-sm-2 desc dataText';
   $scope.buttonsValue = $scope.isMobile? 'buttonsMobile' : 'row buttons';
   
-  $scope.total = 324;
+  $scope.total = 0;
   //add in the database these products
   //make service to retrive.
   //make sure user is logged in
@@ -23,7 +23,10 @@ function($scope, $cookies, helperUtility, cartUtility){
   
   $scope.getCart = function(){
     var uuid = $cookies.get('blackUuid');
-    cartUtility.getUserCart(uuid, $scope, 'onGetCart');
+    if(uuid){
+      cartUtility.getUserCart(uuid, $scope, 'onGetCart');
+    }
+    
   };
 
   $scope.onGetCart = function(response, error){
