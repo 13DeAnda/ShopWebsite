@@ -17,25 +17,25 @@ app.use(express.static(path.resolve(__dirname + '/../front/static')));
 var products = [
   {
     title: "moitie cathedralskirt",
-    price: "564",
+    price: 564.00,
     description: "more descriptions to come...",
     images: ["http://ic.pics.livejournal.com/diaforos_ad/45177959/3010/3010_600.jpg"]
   },
   {
     title: "moitie navy baby op",
-    price: "234",
+    price: 234.00,
     description: "more descriptions to come...",
     images: ["http://data.whicdn.com/images/21702355/large.jpg"]
   },
   {
     title: "holly cross",
-    price: "456",
+    price: 456.00,
     description: "more descriptions to come...",
     images: ["https://c1.staticflickr.com/9/8214/8253627577_c2f5f69dfc.jpg"]
   },
   {
     title: "black peace now",
-    price: "456",
+    price: 456.00,
     description: "more descriptions to come...",
     images: ["https://c1.staticflickr.com/9/8214/8253627577_c2f5f69dfc.jpg"]
   }
@@ -116,7 +116,7 @@ function createTables(){
       }
      });
     //cart
-    client.query('CREATE TABLE Cart(userId integer, itemId integer, quantity integer, price money, title varchar(40), src varchar(50))', function(err, result) {
+    client.query('CREATE TABLE Cart(userId integer, itemId integer, quantity integer, price decimal, title varchar(40), src varchar(200))', function(err, result) {
       if (err) {
         console.log(err);
       }

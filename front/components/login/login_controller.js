@@ -42,10 +42,9 @@ function($scope,$cookies, userUtility, helperUtil){
 		}
 	};
 
-	$scope.onLogin = function(response, error){
-		if(error){
-			console.log("error login in", error);
-			//TODO: these need to be handled and displayed
+	$scope.onLogin = function(response){
+		if(response.status !== 200){
+			console.log("error login in", response.data);
 		}
 		else{
 			$cookies.put('blackUuid', response.data.data.uuid);
@@ -59,9 +58,9 @@ function($scope,$cookies, userUtility, helperUtil){
 		}
 	};
 
-	$scope.onRegister = function(response, error){
-		if(error){
-			console.log("error register in", error);
+	$scope.onRegister = function(response){
+		if(response.status !== 200){
+			console.log("error register in", response.data);
 		}
 		else{
 			$cookies.blackUuuid = response.data.uuid;
