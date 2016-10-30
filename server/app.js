@@ -143,6 +143,7 @@ app.get('/api/cart', function(req,res){
 app.post('/api/cart/', function(req, res){
   return when.promise(function(resolve, reject){
     var cartItem = req.body;
+    var userUuid;
     if(!cartItem.itemId || !cartItem.price || !cartItem.quantity || !cartItem.src ){
       reject(res.status(400).send({error: "cart item data incomplete"}));
     }
@@ -157,10 +158,11 @@ app.post('/api/cart/', function(req, res){
         }
       }.bind(this))
       .then(function(userData){
+        userUuid = userData.uuid;
         return cart.addToCart(client, userData, cartItem);
       }.bind(this))
       .then(function(cart){
-          resolve(res.send(product));      
+          resolve(res.send(userUuid));      
       }.bind(this))
       .catch(function(err){
         console.log(err);
