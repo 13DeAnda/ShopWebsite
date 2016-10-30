@@ -29,6 +29,7 @@ function(productUtility){
     $scope.productClick = function(){
       productUtility.navigateToProductDetail($scope.product.id);
     };
+    $scope.mainImage = $scope.product.images[0] ? $scope.product.images[0] : "/assets/images/placeholder.jpg";
   }
   controller.$inject = ['$scope'];
   return {

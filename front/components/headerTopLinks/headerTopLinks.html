@@ -5,7 +5,7 @@
 			 ng-mouseover="onObject(link)" 
 			 ng-mouseleave="offObject(link)" 
 			 ng-class="link.focus"> 
-		<img class= "iconImg" src= "{{link.image}}" />
+		<img class= "iconImg" ng-src= {{link.image}} />
 	</div>
 
 	<div ng-show= "isMobile" class= "mobileHamburgerMenu">
@@ -19,7 +19,7 @@
 			X
 		</div>
 		<div class ="mobileContainer" ng-repeat ="link in topLinks" 
-																	ng-click ="goTo">
+									  ng-click ="goTo">
 			{{link.title}}
 		</div>
 	</div>
