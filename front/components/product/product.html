@@ -10,16 +10,16 @@
 		</div>	
 	</div>
 	<div class= "col-md-5 infoContainer">
-		<div class="row">
-			<div ng-class="titleValue"> {{product.title}}</div>
+		<div class= "row">
+			<div ng-class= "titleValue"> {{product.title}}</div>
 		</div>
 		<div ng-class="priceValue">
 			{{product.price | currency}}
 		</div>
-		<div class="row">
-			<Button ng-class="cartButtonValue"> Add To Cart </Button>
+		<div class= "row">
+			<Button ng-class= "cartButtonValue" ng-click="addToCart()" > Add To Cart </Button>
 		</div>
-		<div ng-class="descriptionValue">
+		<div ng-class= "descriptionValue">
 
 			{{product.description}}
 		</div>

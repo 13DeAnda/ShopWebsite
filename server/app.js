@@ -117,13 +117,19 @@ app.get('/api/test', function(req, res) {
 app.get('/api/cart', function(req,res){
   return when.promise(function(resolve, reject){
     var userUuid = req.query.uuid;
+    
     if(!userUuid){
-      reject({status: 400, data: {error: "user is not loged in"}});
+      reject(res.status(400).send({error: "user is not loged in"}));
     }
 
     user.getUserByUuid(client, userUuid)
       .then(function(user){
-        return cart.getUserCart(client, user.id);
+        if(!user){
+          reject(res.status(400).send({error: "user is not loged in"}));
+        }
+        else{
+          return cart.getUserCart(client, user.id);
+        }        
       }.bind(this))
       .then(function(cartItems){
         resolve(res.send(cartItems));
@@ -134,13 +140,11 @@ app.get('/api/cart', function(req,res){
   }.bind(this));
 });
 
-
 app.post('/api/cart/', function(req, res){
   return when.promise(function(resolve, reject){
-    
     var cartItem = req.body;
     if(!cartItem.itemId || !cartItem.price || !cartItem.quantity || !cartItem.src ){
-      reject({status: 400, data:{error: "cart item data incomplete"}});
+      reject(res.status(400).send({error: "cart item data incomplete"}));
     }
 
     user.getUserByUuid(client, req.query.uuid)
@@ -159,6 +163,7 @@ app.post('/api/cart/', function(req, res){
           resolve(res.send(product));      
       }.bind(this))
       .catch(function(err){
+        console.log(err);
         reject(res.status(err.status).send(err.data));
       }.bind(this));
   }.bind(this));
@@ -199,10 +204,10 @@ app.delete('/api/cart', function(req, res){
     var itemId = req.body.itemId;
 
     if(!userUuid){
-      reject({status: 400, data: {error: "user is not loged in"}});
+      reject(res.status(400).send({error: "user is not loged in"}));
     }
     if(!itemId){
-      reject({status: 400, data: {error: "itemId needed to delete"}});
+      reject(res.status(400).send({error: "itemId needed to delete"}));
     }
 
     user.getUserByUuid(client, userUuid)

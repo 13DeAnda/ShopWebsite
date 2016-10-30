@@ -30,7 +30,13 @@ function($scope, $cookies, helperUtility, cartUtility){
   };
 
   $scope.onGetCart = function(response, error){
-    $scope.products = response.data;
+    if(response.status !== 200){
+      console.log("an error occured should be handled", response.data);
+    }
+    else{
+     $scope.products = response.data; 
+    }
+
   };
 
   $scope.goToProduct = function(id){
@@ -38,5 +44,4 @@ function($scope, $cookies, helperUtility, cartUtility){
   };
 
   $scope.getCart();
-
 }]);
